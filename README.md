@@ -1,6 +1,6 @@
 # universo_bd
 
-A new Flutter application.
+Flutter project for my DB class.
 
 ## Getting Started
 
