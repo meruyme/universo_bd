@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "355212466963",
+    "firebase_url": "https://universo-543f4.firebaseio.com",
+    "project_id": "universo-543f4",
+    "storage_bucket": "universo-543f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355212466963:android:3500832483505cfa9398e6",
+        "android_client_info": {
+          "package_name": "com.mellanylinhares.universo_bd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355212466963-r7ga8gtvntuno1pv7h76v3rt4dv0tjb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2vmrGS09lHaW-T_ZWUl4TyGt0WAuffoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355212466963-r7ga8gtvntuno1pv7h76v3rt4dv0tjb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
