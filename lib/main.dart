@@ -15,6 +15,7 @@ import 'package:universo_bd/planeta/editar_planeta.dart';
 import 'package:universo_bd/planeta/exibir_planeta.dart';
 import 'package:universo_bd/planeta/listar_planeta.dart';
 import 'package:universo_bd/login.dart';
+import 'package:universo_bd/relacionamentos/sistema_estrela/cadastrar_sistema_estrela.dart';
 import 'package:universo_bd/relacionamentos/sistema_planeta/cadastrar_sistema_planeta.dart';
 import 'package:universo_bd/satelite_natural/cadastrar_satelite_natural.dart';
 import 'package:universo_bd/satelite_natural/editar_satelite_natural.dart';
@@ -57,7 +58,7 @@ void main(){
           "/editar_sistema_planetario" : (context) => editar_sistema_planetario(arguments: ModalRoute.of(context).settings.arguments)
 
         },
-        home: cadastrar_sistema_planeta(),
+        home: login(),
         theme: ThemeData(
             primaryColor: Colors.deepPurple,
             accentColor: Colors.deepPurpleAccent,
