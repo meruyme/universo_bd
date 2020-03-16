@@ -55,8 +55,9 @@ void main(){
           "/cadastrar_sistema_planetario" : (context) => cadastrar_sistema_planetario(),
           "/listar_sistema_planetario" : (context) => listar_sistema_planetario(),
           "/exibir_sistema_planetario" : (context) => exibir_sistema_planetario(arguments: ModalRoute.of(context).settings.arguments),
-          "/editar_sistema_planetario" : (context) => editar_sistema_planetario(arguments: ModalRoute.of(context).settings.arguments)
-
+          "/editar_sistema_planetario" : (context) => editar_sistema_planetario(arguments: ModalRoute.of(context).settings.arguments),
+          "/cadastrar_sistema_estrela" : (context) => cadastrar_sistema_estrela(),
+          "cadastrar_sistema_planeta" : (context) => cadastrar_sistema_planeta()
         },
         home: login(),
         theme: ThemeData(
