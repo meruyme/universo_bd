@@ -74,7 +74,16 @@ class _cadastrar_sistema_planetaState extends State<cadastrar_sistema_planeta> {
                       final sistemasDB = snapshot.data.documents;
                       List<DropdownMenuItem> itens = List();
                       List<SistemaPlanetario> listaSistemas = List();
-
+                      SistemaPlanetario aux = SistemaPlanetario();
+                      aux.nome = "Sistemas Planetários";
+                      itens.add(
+                          DropdownMenuItem(
+                              value: aux,
+                              child: Container(
+                                child: Text(aux.nome, style: TextStyle(color: Colors.white),),
+                              )
+                          )
+                      );
                       for(DocumentSnapshot item in sistemasDB){
                         var dados = item.data;
                         SistemaPlanetario sistemaPlanetario = SistemaPlanetario();
@@ -164,6 +173,16 @@ class _cadastrar_sistema_planetaState extends State<cadastrar_sistema_planeta> {
                       final planetasDB = snapshot.data.documents;
                       List<DropdownMenuItem> itens = List();
                       List<Planeta> listaPlanetas = List();
+                      Planeta aux = Planeta();
+                      aux.nome = "Planetas";
+                      itens.add(
+                          DropdownMenuItem(
+                              value: aux,
+                              child: Container(
+                                child: Text(aux.nome, style: TextStyle(color: Colors.white),),
+                              )
+                          )
+                      );
 
                       for(DocumentSnapshot item in planetasDB){
                         var dados = item.data;
@@ -206,9 +225,6 @@ class _cadastrar_sistema_planetaState extends State<cadastrar_sistema_planeta> {
                                           ),
                                           child: OutlineDropdownButton(
                                             inputDecoration: InputDecoration(
-                                              /*enabledBorder: OutlineInputBorder(
-                                     borderSide: BorderSide(color: Colors.white, width: 2)
-                                   ),*/
                                                 border: OutlineInputBorder(
                                                     borderRadius: BorderRadius.all(Radius.circular(18.0))
                                                 ),
