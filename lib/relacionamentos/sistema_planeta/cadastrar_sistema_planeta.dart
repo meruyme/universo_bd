@@ -39,7 +39,7 @@ class _cadastrar_sistema_planetaState extends State<cadastrar_sistema_planeta> {
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
       );
-      //Navigator.pop(context);
+      Navigator.pop(context);
     }
   }
 
