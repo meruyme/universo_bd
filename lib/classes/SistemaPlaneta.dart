@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SistemaPlaneta{
+  String _id;
   String _idPlaneta;
   String _idSistema;
 
@@ -16,6 +17,13 @@ class SistemaPlaneta{
 
   set idPlaneta(String value) {
     _idPlaneta = value;
+  }
+
+
+  String get id => _id;
+
+  set id(String value) {
+    _id = value;
   }
 
   void adicionarSistemaPlaneta(){
