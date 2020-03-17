@@ -60,9 +60,10 @@ void main(){
           "/editar_sistema_planetario" : (context) => editar_sistema_planetario(arguments: ModalRoute.of(context).settings.arguments),
           "/cadastrar_sistema_estrela" : (context) => cadastrar_sistema_estrela(),
           "/cadastrar_sistema_planeta" : (context) => cadastrar_sistema_planeta(),
-          "/listar_sistema_planeta" : (context) => listar_sistema_planeta()
+          "/listar_sistema_planeta" : (context) => listar_sistema_planeta(),
+          "/menu_relacoes" : (context) => menu_relacoes()
         },
-        home: menu_relacoes(),
+        home: login(),
         theme: ThemeData(
             primaryColor: Colors.deepPurple,
             accentColor: Colors.deepPurpleAccent,
