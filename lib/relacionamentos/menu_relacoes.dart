@@ -34,7 +34,7 @@ class _menu_relacoesState extends State<menu_relacoes> {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/00.jpg"),
+            image: AssetImage("images/fundo_telas6.jpg"),
             fit: BoxFit.cover,
           )
       ),
