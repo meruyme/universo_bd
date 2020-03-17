@@ -15,6 +15,7 @@ import 'package:universo_bd/planeta/editar_planeta.dart';
 import 'package:universo_bd/planeta/exibir_planeta.dart';
 import 'package:universo_bd/planeta/listar_planeta.dart';
 import 'package:universo_bd/login.dart';
+import 'package:universo_bd/relacionamentos/menu_relacoes.dart';
 import 'package:universo_bd/relacionamentos/sistema_estrela/cadastrar_sistema_estrela.dart';
 import 'package:universo_bd/relacionamentos/sistema_planeta/cadastrar_sistema_planeta.dart';
 import 'package:universo_bd/satelite_natural/cadastrar_satelite_natural.dart';
@@ -59,7 +60,7 @@ void main(){
           "/cadastrar_sistema_estrela" : (context) => cadastrar_sistema_estrela(),
           "cadastrar_sistema_planeta" : (context) => cadastrar_sistema_planeta()
         },
-        home: login(),
+        home: menu_relacoes(),
         theme: ThemeData(
             primaryColor: Colors.deepPurple,
             accentColor: Colors.deepPurpleAccent,
