@@ -18,7 +18,7 @@ class SistemaPlaneta{
     _idPlaneta = value;
   }
 
-  void cadastrarSistemaPlaneta(){
+  void adicionarSistemaPlaneta(){
     Firestore db = Firestore.instance;
     db.collection("sistemas_planetas").add({
       "idPlaneta": idPlaneta,

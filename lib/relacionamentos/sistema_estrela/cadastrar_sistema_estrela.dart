@@ -34,7 +34,7 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
       SistemaEstrela sistemaEstrela = SistemaEstrela();
       sistemaEstrela.idSistema = selectedSystem.id;
       sistemaEstrela.idEstrela = selectedStar.id;
-      sistemaEstrela.cadastrarSistemaEstrela();
+      sistemaEstrela.adicionarSistemaEstrela();
       Fluttertoast.showToast(
         msg: "Entidades relacionadas com sucesso!",
         toastLength: Toast.LENGTH_LONG,

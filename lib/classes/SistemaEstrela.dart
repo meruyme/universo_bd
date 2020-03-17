@@ -16,7 +16,7 @@ class SistemaEstrela{
     _idSistema = value;
   }
 
-  void cadastrarSistemaEstrela(){
+  void adicionarSistemaEstrela(){
     Firestore db = Firestore.instance;
     db.collection("sistemas_estrelas").add({
       "idEstrela": idEstrela,

@@ -5,7 +5,6 @@ import 'package:groovin_widgets/groovin_widgets.dart';
 import 'package:universo_bd/classes/Planeta.dart';
 import 'package:universo_bd/classes/SistemaPlaneta.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
-import 'package:universo_bd/custom_icons_icons.dart';
 
 class cadastrar_sistema_planeta extends StatefulWidget {
   @override
@@ -34,7 +33,7 @@ class _cadastrar_sistema_planetaState extends State<cadastrar_sistema_planeta> {
       SistemaPlaneta sistemaPlaneta = SistemaPlaneta();
       sistemaPlaneta.idSistema = selectedSystem.id;
       sistemaPlaneta.idPlaneta = selectedPlanet.id;
-      sistemaPlaneta.cadastrarSistemaPlaneta();
+      sistemaPlaneta.adicionarSistemaPlaneta();
       Fluttertoast.showToast(
         msg: "Entidades relacionadas com sucesso!",
         toastLength: Toast.LENGTH_LONG,
