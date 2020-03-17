@@ -59,7 +59,7 @@ void main(){
           "/cadastrar_sistema_estrela" : (context) => cadastrar_sistema_estrela(),
           "cadastrar_sistema_planeta" : (context) => cadastrar_sistema_planeta()
         },
-        home: login(),
+        home: cadastrar_sistema_planetario(),
         theme: ThemeData(
             primaryColor: Colors.deepPurple,
             accentColor: Colors.deepPurpleAccent,
