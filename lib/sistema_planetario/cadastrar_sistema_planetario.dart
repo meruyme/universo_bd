@@ -116,7 +116,8 @@ class _cadastrar_sistema_planetarioState extends State<cadastrar_sistema_planeta
                       final galaxiasDB = snapshot.data.documents;
                       List<DropdownMenuItem> itens = List();
                       List<Galaxia> listaGalaxias = List();
-
+                      Galaxia aux = Galaxia();
+                      aux.nome = "Galáxias";
                       for(DocumentSnapshot item in galaxiasDB) {
                          var dados = item.data;
                          Galaxia galaxia = Galaxia();
@@ -127,7 +128,14 @@ class _cadastrar_sistema_planetarioState extends State<cadastrar_sistema_planeta
                          galaxia.qtdSistemas = int.tryParse(dados["qtdSistemas"].toString());
                          listaGalaxias.add(galaxia);
                        }
-
+                      itens.add(
+                          DropdownMenuItem(
+                              value: aux,
+                              child: Container(
+                                child: Text(aux.nome, style: TextStyle(color: Colors.white),),
+                              )
+                          )
+                      );
                       for(Galaxia item in listaGalaxias){
                         itens.add(
                             DropdownMenuItem(
@@ -156,9 +164,6 @@ class _cadastrar_sistema_planetarioState extends State<cadastrar_sistema_planeta
                                            ),
                                            child: OutlineDropdownButton(
                                              inputDecoration: InputDecoration(
-                                               /*enabledBorder: OutlineInputBorder(
-                                     borderSide: BorderSide(color: Colors.white, width: 2)
-                                   ),*/
                                                  border: OutlineInputBorder(
                                                      borderRadius: BorderRadius.all(Radius.circular(18.0))
                                                  ),

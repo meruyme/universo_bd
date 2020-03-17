@@ -80,42 +80,6 @@ void main(){
   );
 
 
-
-
-
-  /*DocumentReference ref = await db.collection("planetas")
-    .add(
-      {
-        "nome": "Marte",
-        "tamanho": 40000,
-        "massa": 900000
-      }
-  );
-    print("item salvo: "+ref.documentID);
-
-  */
-
- /* db.collection("planetas")
-    .document("WqfJvKglwoAx6vnxGeJ7")
-    .setData(
-      {
-        "nome": "Saturno",
-        "tamanho": 35000,
-        "massa": 1000000
-      }
-  );*/
-
-
-
-  /*db.collection("usuarios")
-    .document("002")
-    .setData({
-      "nome": "Eduardo",
-      "idade": "19"
-    }
-  );*/
-
-
 }
 
 
