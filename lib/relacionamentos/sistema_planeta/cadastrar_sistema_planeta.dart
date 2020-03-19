@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
+import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/Planeta.dart';
 import 'package:universo_bd/classes/SistemaPlaneta.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
@@ -31,8 +32,8 @@ class _cadastrar_sistema_planetaState extends State<cadastrar_sistema_planeta> {
     }
     else{
       SistemaPlaneta sistemaPlaneta = SistemaPlaneta();
-      sistemaPlaneta.idSistema = selectedSystem.id;
-      sistemaPlaneta.idPlaneta = selectedPlanet.id;
+      sistemaPlaneta.sistemaPlanetario = selectedSystem;
+      sistemaPlaneta.planeta = selectedPlanet;
       sistemaPlaneta.adicionarSistemaPlaneta();
       Fluttertoast.showToast(
         msg: "Entidades relacionadas com sucesso!",
@@ -86,13 +87,15 @@ class _cadastrar_sistema_planetaState extends State<cadastrar_sistema_planeta> {
                       );
                       for(DocumentSnapshot item in sistemasDB){
                         var dados = item.data;
+                        Galaxia galaxia = Galaxia();
                         SistemaPlanetario sistemaPlanetario = SistemaPlanetario();
                         sistemaPlanetario.id = item.documentID;
                         sistemaPlanetario.nome = dados["nome"];
                         sistemaPlanetario.idade = double.tryParse(dados["idade"].toString());
                         sistemaPlanetario.qtdEstrelas = int.tryParse(dados["qtdEstrelas"].toString());
                         sistemaPlanetario.qtdPlanetas = int.tryParse(dados["qtdPlanetas"].toString());
-                        sistemaPlanetario.idGalaxia = dados["idGalaxia"];
+                        galaxia.id = dados["idGalaxia"];
+                        sistemaPlanetario.galaxia = galaxia;
                         listaSistemas.add(sistemaPlanetario);
                       }
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
 import 'package:universo_bd/classes/Estrela.dart';
+import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/GiganteVermelha.dart';
 import 'package:universo_bd/classes/SistemaEstrela.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
@@ -32,8 +33,8 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
     }
     else{
       SistemaEstrela sistemaEstrela = SistemaEstrela();
-      sistemaEstrela.idSistema = selectedSystem.id;
-      sistemaEstrela.idEstrela = selectedStar.id;
+      sistemaEstrela.sistemaPlanetario = selectedSystem;
+      sistemaEstrela.estrela = selectedStar;
       sistemaEstrela.adicionarSistemaEstrela();
       Fluttertoast.showToast(
         msg: "Entidades relacionadas com sucesso!",
@@ -78,13 +79,15 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
 
                       for(DocumentSnapshot item in sistemasDB){
                         var dados = item.data;
+                        Galaxia galaxia = Galaxia();
+                        galaxia.id = dados["idGalaxia"];
                         SistemaPlanetario sistemaPlanetario = SistemaPlanetario();
                         sistemaPlanetario.id = item.documentID;
                         sistemaPlanetario.nome = dados["nome"];
                         sistemaPlanetario.idade = double.tryParse(dados["idade"].toString());
                         sistemaPlanetario.qtdEstrelas = int.tryParse(dados["qtdEstrelas"].toString());
                         sistemaPlanetario.qtdPlanetas = int.tryParse(dados["qtdPlanetas"].toString());
-                        sistemaPlanetario.idGalaxia = dados["idGalaxia"];
+                        sistemaPlanetario.galaxia = galaxia;
                         listaSistemas.add(sistemaPlanetario);
                       }
 

@@ -149,7 +149,7 @@ class _exibir_galaxiaState extends State<exibir_galaxia> {
                         sistemaPlanetario.idade = double.tryParse(dados["idade"].toString());
                         sistemaPlanetario.qtdEstrelas = int.tryParse(dados["qtdEstrelas"].toString());
                         sistemaPlanetario.qtdPlanetas = int.tryParse(dados["qtdPlanetas"].toString());
-                        sistemaPlanetario.idGalaxia = dados["idGalaxia"];
+                        sistemaPlanetario.galaxia = widget.galaxia;
                         listaSistemas.add(sistemaPlanetario);
                       }
 

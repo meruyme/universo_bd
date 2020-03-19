@@ -8,10 +8,16 @@ class SistemaPlanetario{
   double _idade;
   int _qtdPlanetas;
   int _qtdEstrelas;
-  String _idGalaxia;
+  Galaxia _galaxia;
 
   SistemaPlanetario();
 
+
+  Galaxia get galaxia => _galaxia;
+
+  set galaxia(Galaxia value) {
+    _galaxia = value;
+  }
 
   String get id => _id;
 
@@ -45,36 +51,30 @@ class SistemaPlanetario{
   }
 
 
-  String get idGalaxia => _idGalaxia;
-
-  set idGalaxia(String value) {
-    _idGalaxia = value;
-  }
-
-  void adicionarSistemaPlanetario(Galaxia galaxia){
+  void adicionarSistemaPlanetario(){
     Firestore db = Firestore.instance;
     db.collection("sistemas_planetarios").add({
       "nome": nome,
       "idade": idade,
-      "idGalaxia": idGalaxia,
+      "idGalaxia": galaxia.id,
       "qtdPlanetas": 0,
       "qtdEstrelas": 0,
     });
     galaxia.editarGalaxia();
   }
 
-  void editarSistemaPlanetario(Galaxia galaxiaNova, Galaxia galaxiaAntiga){
+  void editarSistemaPlanetario(Galaxia galaxiaAntiga){
     Firestore db = Firestore.instance;
     db.collection("sistemas_planetarios").document(id).setData({
       "nome": nome,
       "idade": idade,
-      "idGalaxia": idGalaxia,
+      "idGalaxia": galaxia.id,
       "qtdPlanetas": qtdPlanetas,
       "qtdEstrelas": qtdEstrelas,
     });
-    if(galaxiaAntiga.id != galaxiaNova.id){
+    if(galaxiaAntiga.id != galaxia.id){
       galaxiaAntiga.editarGalaxia();
-      galaxiaNova.editarGalaxia();
+      galaxia.editarGalaxia();
     }
   }
 }

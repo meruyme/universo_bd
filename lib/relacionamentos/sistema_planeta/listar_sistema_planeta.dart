@@ -71,9 +71,13 @@ class _listar_sistema_planetaState extends State<listar_sistema_planeta> {
                   for(DocumentSnapshot item in relacoesDB){
                     var dados = item.data;
                     SistemaPlaneta sistemaPlaneta = SistemaPlaneta();
+                    SistemaPlanetario sistemaPlanetario = SistemaPlanetario();
+                    Planeta planeta = Planeta();
                     sistemaPlaneta.id = item.documentID;
-                    sistemaPlaneta.idPlaneta = dados["idPlaneta"];
-                    sistemaPlaneta.idSistema = dados["idSistema"];
+                    sistemaPlanetario.id = dados["idSistema"];
+                    planeta.id = dados["idPlaneta"];
+                    sistemaPlaneta.sistemaPlanetario = sistemaPlanetario;
+                    sistemaPlaneta.planeta = planeta;
                     listaRelacoes.add(sistemaPlaneta);
                   }
 
@@ -85,51 +89,49 @@ class _listar_sistema_planetaState extends State<listar_sistema_planeta> {
                   itemBuilder: (context, position){
                     SistemaPlaneta sistemaPlaneta = listaRelacoes[position];
                     return StreamBuilder<DocumentSnapshot>(
-                      stream: db.collection("sistemas_planetarios").document(sistemaPlaneta.idSistema).snapshots(),
+                      stream: db.collection("sistemas_planetarios").document(sistemaPlaneta.sistemaPlanetario.id).snapshots(),
                       builder: (context, snapshotSystem){
                         if(!snapshotSystem.hasData){
                           return Text("");
                         }
                         else{
                           final dados = snapshotSystem.data;
-                          SistemaPlanetario sistemaPlanetario = SistemaPlanetario();
-                          sistemaPlanetario.id = dados.documentID;
-                          sistemaPlanetario.nome = dados["nome"];
-                          sistemaPlanetario.idade = double.tryParse(dados["idade"].toString());
-                          sistemaPlanetario.qtdEstrelas = int.tryParse(dados["qtdEstrelas"].toString());
-                          sistemaPlanetario.qtdPlanetas = int.tryParse(dados["qtdPlanetas"].toString());
-                          sistemaPlanetario.idGalaxia = dados["idGalaxia"];
+                          sistemaPlaneta.sistemaPlanetario.id = dados.documentID;
+                          sistemaPlaneta.sistemaPlanetario.nome = dados["nome"];
+                          sistemaPlaneta.sistemaPlanetario.idade = double.tryParse(dados["idade"].toString());
+                          sistemaPlaneta.sistemaPlanetario.qtdEstrelas = int.tryParse(dados["qtdEstrelas"].toString());
+                          sistemaPlaneta.sistemaPlanetario.qtdPlanetas = int.tryParse(dados["qtdPlanetas"].toString());
+                          Galaxia galaxia = Galaxia();
+                          galaxia.id = dados["idGalaxia"];
+                          sistemaPlaneta.sistemaPlanetario.galaxia = galaxia;
 
                           return StreamBuilder<DocumentSnapshot>(
-                            stream: db.collection("galaxias").document(sistemaPlanetario.idGalaxia).snapshots(),
+                            stream: db.collection("galaxias").document(sistemaPlaneta.sistemaPlanetario.galaxia.id).snapshots(),
                             builder: (context, snapshotGalaxy){
                               if(!snapshotGalaxy.hasData){
                                 return Text("");
                               }
                               else{
                                 final dados = snapshotGalaxy.data;
-                                Galaxia galaxia = Galaxia();
-                                galaxia.id = dados.documentID;
-                                galaxia.nome = dados["nome"];
-                                galaxia.distanciaTerra = double.tryParse(dados["distanciaTerra"].toString());
-                                galaxia.qtdSistemas = int.tryParse(dados["qtdSistemas"].toString());
+                                sistemaPlaneta.sistemaPlanetario.galaxia.id = dados.documentID;
+                                sistemaPlaneta.sistemaPlanetario.galaxia.nome = dados["nome"];
+                                sistemaPlaneta.sistemaPlanetario.galaxia.distanciaTerra = double.tryParse(dados["distanciaTerra"].toString());
+                                sistemaPlaneta.sistemaPlanetario.galaxia.qtdSistemas = int.tryParse(dados["qtdSistemas"].toString());
 
                                 return StreamBuilder<DocumentSnapshot>(
-                                  stream: db.collection("planetas").document(sistemaPlaneta.idPlaneta).snapshots(),
+                                  stream: db.collection("planetas").document(sistemaPlaneta.planeta.id).snapshots(),
                                   builder: (context, snapshotPlanet){
                                     if(!snapshotPlanet.hasData){
                                       return Text("");
                                     }
                                     else{
                                       final dados = snapshotPlanet.data;
-                                      Planeta planeta = Planeta();
-                                      planeta.id = dados.documentID;
-                                      planeta.nome = dados["nome"];
-                                      planeta.massa = double.tryParse(dados["massa"].toString());
-                                      planeta.tamanho = double.tryParse(dados["tamanho"].toString());
-                                      planeta.velocidadeRotacao = double.tryParse(dados["velocidadeRotacao"].toString());
+                                      sistemaPlaneta.planeta.nome = dados["nome"];
+                                      sistemaPlaneta.planeta.massa = double.tryParse(dados["massa"].toString());
+                                      sistemaPlaneta.planeta.tamanho = double.tryParse(dados["tamanho"].toString());
+                                      sistemaPlaneta.planeta.velocidadeRotacao = double.tryParse(dados["velocidadeRotacao"].toString());
                                       List<dynamic> auxDyn = dados["componentes"];
-                                      planeta.componentes = List<String>.from(auxDyn);
+                                      sistemaPlaneta.planeta.componentes = List<String>.from(auxDyn);
 
                                       return GestureDetector(
                                         onTap: (){
@@ -137,8 +139,8 @@ class _listar_sistema_planetaState extends State<listar_sistema_planeta> {
                                         },
                                         child: custom_card_relations(
                                           icon: CustomIcons.solar_system,
-                                          title1: "Sistema Planetário: " + sistemaPlanetario.nome,
-                                          title2: "Planeta: " + planeta.nome,
+                                          title1: "Sistema Planetário: " + sistemaPlaneta.sistemaPlanetario.nome,
+                                          title2: "Planeta: " + sistemaPlaneta.planeta.nome,
                                         ),
                                       );
                                     }
