@@ -7,8 +7,6 @@ import 'package:universo_bd/custom_card.dart';
 import 'package:universo_bd/custom_icons_icons.dart';
 import 'package:universo_bd/navigation_drawer.dart';
 
-import '../arguments/SistemaGalaxiaArguments.dart';
-
 class listar_sistema_planetario extends StatefulWidget {
 
   @override
@@ -20,28 +18,6 @@ class _listar_sistema_planetarioState extends State<listar_sistema_planetario> {
 
   Firestore db = Firestore.instance;
 
-
-  /*Future<List<Planeta>> _recuperarPlanetas() async{
-
-    Firestore db = Firestore.instance;
-    QuerySnapshot querySnapshot = await db.collection("planetas")
-      .getDocuments();
-
-    List<Planeta> listaPlanetas = List();
-    for(DocumentSnapshot item in querySnapshot.documents){
-      var dados = item.data;
-      Planeta planeta = Planeta();
-      planeta.id = item.documentID;
-      planeta.nome = dados["nome"];
-      planeta.massa = double.tryParse(dados["massa"].toString());
-      planeta.tamanho = double.tryParse(dados["tamanho"].toString());
-      listaPlanetas.add(planeta);
-
-    }
-
-    return listaPlanetas;
-
-  }*/
 
 
   @override
@@ -98,12 +74,14 @@ class _listar_sistema_planetarioState extends State<listar_sistema_planetario> {
                   for(DocumentSnapshot item in sistemasDB){
                     var dados = item.data;
                     SistemaPlanetario sistemaPlanetario = SistemaPlanetario();
+                    Galaxia galaxia = Galaxia();
+                    galaxia.id = dados["idGalaxia"];
                     sistemaPlanetario.id = item.documentID;
                     sistemaPlanetario.nome = dados["nome"];
                     sistemaPlanetario.idade = double.tryParse(dados["idade"].toString());
                     sistemaPlanetario.qtdEstrelas = int.tryParse(dados["qtdEstrelas"].toString());
                     sistemaPlanetario.qtdPlanetas = int.tryParse(dados["qtdPlanetas"].toString());
-                    sistemaPlanetario.idGalaxia = dados["idGalaxia"];
+                    sistemaPlanetario.galaxia = galaxia;
                     listaSistemas.add(sistemaPlanetario);
                   }
 
@@ -115,29 +93,27 @@ class _listar_sistema_planetarioState extends State<listar_sistema_planetario> {
                       itemBuilder: (context, position){
                         SistemaPlanetario sistemaPlanetario = listaSistemas[position];
                         return StreamBuilder<DocumentSnapshot>(
-                          stream: db.collection("galaxias").document(sistemaPlanetario.idGalaxia).snapshots(),
+                          stream: db.collection("galaxias").document(sistemaPlanetario.galaxia.id).snapshots(),
                           builder: (context, snapshotGalaxy){
                             if(!snapshotGalaxy.hasData){
                               return Text("");
                             }
                             else{
                               final dados = snapshotGalaxy.data;
-                              Galaxia galaxia = Galaxia();
-                              galaxia.id = dados.documentID;
-                              galaxia.nome = dados["nome"];
-                              galaxia.distanciaTerra = double.tryParse(dados["distanciaTerra"].toString());
-                              galaxia.qtdSistemas = int.tryParse(dados["qtdSistemas"].toString());
+                              sistemaPlanetario.galaxia.nome = dados["nome"];
+                              sistemaPlanetario.galaxia.distanciaTerra = double.tryParse(dados["distanciaTerra"].toString());
+                              sistemaPlanetario.galaxia.qtdSistemas = int.tryParse(dados["qtdSistemas"].toString());
 
                               return GestureDetector(
                                 onTap: (){
                                   Navigator.pushNamed(context, "/exibir_sistema_planetario",
-                                      arguments: SistemaGalaxiaArguments(sistemaPlanetario: sistemaPlanetario, galaxia: galaxia));
+                                      arguments: sistemaPlanetario);
                                 },
                                 child: custom_card(
                                     icon: CustomIcons.solar_system,
                                     title: sistemaPlanetario.nome,
                                     subtitle1: "Idade: " + sistemaPlanetario.idade.toString() + " bilhões de anos",
-                                    subtitle2: "Galáxia: " + galaxia.nome
+                                    subtitle2: "Galáxia: " + sistemaPlanetario.galaxia.nome
                                 ),
                               );
                             }

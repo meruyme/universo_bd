@@ -15,8 +15,10 @@ import 'package:universo_bd/planeta/editar_planeta.dart';
 import 'package:universo_bd/planeta/exibir_planeta.dart';
 import 'package:universo_bd/planeta/listar_planeta.dart';
 import 'package:universo_bd/login.dart';
+import 'package:universo_bd/relacionamentos/menu_relacoes.dart';
 import 'package:universo_bd/relacionamentos/sistema_estrela/cadastrar_sistema_estrela.dart';
 import 'package:universo_bd/relacionamentos/sistema_planeta/cadastrar_sistema_planeta.dart';
+import 'package:universo_bd/relacionamentos/sistema_planeta/listar_sistema_planeta.dart';
 import 'package:universo_bd/satelite_natural/cadastrar_satelite_natural.dart';
 import 'package:universo_bd/satelite_natural/editar_satelite_natural.dart';
 import 'package:universo_bd/satelite_natural/exibir_satelite_natural.dart';
@@ -54,12 +56,14 @@ void main(){
           "/editar_satelite_natural" : (context) => editar_satelite_natural(sateliteNatural: ModalRoute.of(context).settings.arguments),
           "/cadastrar_sistema_planetario" : (context) => cadastrar_sistema_planetario(),
           "/listar_sistema_planetario" : (context) => listar_sistema_planetario(),
-          "/exibir_sistema_planetario" : (context) => exibir_sistema_planetario(arguments: ModalRoute.of(context).settings.arguments),
-          "/editar_sistema_planetario" : (context) => editar_sistema_planetario(arguments: ModalRoute.of(context).settings.arguments),
+          "/exibir_sistema_planetario" : (context) => exibir_sistema_planetario(sistemaPlanetario: ModalRoute.of(context).settings.arguments),
+          "/editar_sistema_planetario" : (context) => editar_sistema_planetario(sistemaPlanetario: ModalRoute.of(context).settings.arguments),
           "/cadastrar_sistema_estrela" : (context) => cadastrar_sistema_estrela(),
-          "cadastrar_sistema_planeta" : (context) => cadastrar_sistema_planeta()
+          "/cadastrar_sistema_planeta" : (context) => cadastrar_sistema_planeta(),
+          "/listar_sistema_planeta" : (context) => listar_sistema_planeta(),
+          "/menu_relacoes" : (context) => menu_relacoes(),
         },
-        home: cadastrar_sistema_estrela(),
+        home: login(),
         theme: ThemeData(
             primaryColor: Colors.deepPurple,
             accentColor: Colors.deepPurpleAccent,

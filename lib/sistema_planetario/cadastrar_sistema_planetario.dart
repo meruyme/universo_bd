@@ -43,9 +43,9 @@ class _cadastrar_sistema_planetarioState extends State<cadastrar_sistema_planeta
       SistemaPlanetario sistemaPlanetario = SistemaPlanetario();
       sistemaPlanetario.nome=_controllerNome.text;
       sistemaPlanetario.idade=double.tryParse(_controllerIdade.text);
-      sistemaPlanetario.idGalaxia = selectedGalaxy.id;
       selectedGalaxy.qtdSistemas += 1;
-      sistemaPlanetario.adicionarSistemaPlanetario(selectedGalaxy);
+      sistemaPlanetario.galaxia = selectedGalaxy;
+      sistemaPlanetario.adicionarSistemaPlanetario();
       Fluttertoast.showToast(
         msg: "Sistema Planetário cadastrado com sucesso!",
         toastLength: Toast.LENGTH_LONG,

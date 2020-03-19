@@ -1,26 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:universo_bd/classes/Estrela.dart';
+import 'package:universo_bd/classes/SistemaPlanetario.dart';
 
 class SistemaEstrela{
-  String _idEstrela;
-  String _idSistema;
+  String _id;
+  Estrela _estrela;
+  SistemaPlanetario _sistemaPlanetario;
 
-  String get idEstrela => _idEstrela;
 
-  set idEstrela(String value) {
-    _idEstrela = value;
+  Estrela get estrela => _estrela;
+
+  set estrela(Estrela value) {
+    _estrela = value;
   }
 
-  String get idSistema => _idSistema;
+  String get id => _id;
 
-  set idSistema(String value) {
-    _idSistema = value;
+  set id(String value) {
+    _id = value;
+  }
+
+  SistemaPlanetario get sistemaPlanetario => _sistemaPlanetario;
+
+  set sistemaPlanetario(SistemaPlanetario value) {
+    _sistemaPlanetario = value;
   }
 
   void adicionarSistemaEstrela(){
     Firestore db = Firestore.instance;
     db.collection("sistemas_estrelas").add({
-      "idEstrela": idEstrela,
-      "idSistema": idSistema
+      "idEstrela": estrela.id,
+      "idSistema": sistemaPlanetario.id
     });
   }
 

@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/outline_dropdown_button.dart';
-import 'package:universo_bd/arguments/SistemaGalaxiaArguments.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
+import 'package:universo_bd/classes/SistemaPlanetario.dart';
 import 'package:universo_bd/custom_text_field.dart';
 
 class editar_sistema_planetario extends StatefulWidget {
 
-  SistemaGalaxiaArguments arguments;
+  SistemaPlanetario sistemaPlanetario;
 
-  editar_sistema_planetario({this.arguments});
+  editar_sistema_planetario({this.sistemaPlanetario});
 
   _editar_sistema_planetarioState createState() => _editar_sistema_planetarioState();
 }
@@ -31,10 +31,10 @@ class _editar_sistema_planetarioState extends State<editar_sistema_planetario> {
 
   void initState(){
     super.initState();
-    hint = widget.arguments.galaxia.nome;
-    _titulo=widget.arguments.sistemaPlanetario.nome;
-    _controllerNome = new TextEditingController(text: widget.arguments.sistemaPlanetario.nome);
-    _controllerIdade = new TextEditingController(text: widget.arguments.sistemaPlanetario.idade.toString());
+    hint = widget.sistemaPlanetario.galaxia.nome;
+    _titulo=widget.sistemaPlanetario.nome;
+    _controllerNome = new TextEditingController(text: widget.sistemaPlanetario.nome);
+    _controllerIdade = new TextEditingController(text: widget.sistemaPlanetario.idade.toString());
   }
 
   void validarCampos(){
@@ -55,14 +55,16 @@ class _editar_sistema_planetarioState extends State<editar_sistema_planetario> {
       );
     }
     else{
-      widget.arguments.sistemaPlanetario.nome=nome;
-      widget.arguments.sistemaPlanetario.idade=double.tryParse(idade);
-      widget.arguments.sistemaPlanetario.idGalaxia = selectedGalaxy.id;
-      if(selectedGalaxy.id != widget.arguments.galaxia.id){
+      if(selectedGalaxy.id != widget.sistemaPlanetario.galaxia.id){
         selectedGalaxy.qtdSistemas += 1;
-        widget.arguments.galaxia.qtdSistemas -= 1;
+        widget.sistemaPlanetario.galaxia.qtdSistemas -= 1;
       }
-      widget.arguments.sistemaPlanetario.editarSistemaPlanetario(selectedGalaxy, widget.arguments.galaxia);
+      widget.sistemaPlanetario.nome=nome;
+      widget.sistemaPlanetario.idade=double.tryParse(idade);
+      Galaxia galaxiaAntiga = widget.sistemaPlanetario.galaxia;
+      widget.sistemaPlanetario.galaxia = selectedGalaxy;
+
+      widget.sistemaPlanetario.editarSistemaPlanetario(galaxiaAntiga);
       Fluttertoast.showToast(
         msg: "Sistema Planetário editado com sucesso!",
         toastLength: Toast.LENGTH_LONG,
@@ -70,7 +72,7 @@ class _editar_sistema_planetarioState extends State<editar_sistema_planetario> {
       );
       Navigator.popUntil(context, ModalRoute.withName("/listar_sistema_planetario"));
       Navigator.pushNamed(context, "/exibir_sistema_planetario",
-          arguments: SistemaGalaxiaArguments(sistemaPlanetario: widget.arguments.sistemaPlanetario, galaxia: selectedGalaxy));
+          arguments: widget.sistemaPlanetario);
     }
   }
 
@@ -148,7 +150,7 @@ class _editar_sistema_planetarioState extends State<editar_sistema_planetario> {
                       }
 
                       for(Galaxia item in listaGalaxias){
-                        if(item.id == widget.arguments.galaxia.id && hint == widget.arguments.galaxia.nome){
+                        if(item.id == widget.sistemaPlanetario.galaxia.id && hint == widget.sistemaPlanetario.galaxia.nome){
                           selectedGalaxy = item;
                         }
                         itens.add(

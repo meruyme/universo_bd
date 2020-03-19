@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:universo_bd/arguments/SistemaGalaxiaArguments.dart';
+import 'package:universo_bd/classes/SistemaPlanetario.dart';
 import 'package:universo_bd/show_card.dart';
 
 
 class exibir_sistema_planetario extends StatefulWidget {
 
-  SistemaGalaxiaArguments arguments;
+  SistemaPlanetario sistemaPlanetario;
 
-  exibir_sistema_planetario({this.arguments});
+  exibir_sistema_planetario({this.sistemaPlanetario});
 
   _exibir_sistema_planetarioState createState() => _exibir_sistema_planetarioState();
 }
@@ -24,11 +24,11 @@ class _exibir_sistema_planetarioState extends State<exibir_sistema_planetario> {
 
   void initState(){
     super.initState();
-    _galaxia=widget.arguments.galaxia.nome;
-    _nome=widget.arguments.sistemaPlanetario.nome;
-    _idade=widget.arguments.sistemaPlanetario.idade;
-    _qtdPlanetas=widget.arguments.sistemaPlanetario.qtdPlanetas;
-    _qtdEstrelas=widget.arguments.sistemaPlanetario.qtdEstrelas;
+    _galaxia=widget.sistemaPlanetario.galaxia.nome;
+    _nome=widget.sistemaPlanetario.nome;
+    _idade=widget.sistemaPlanetario.idade;
+    _qtdPlanetas=widget.sistemaPlanetario.qtdPlanetas;
+    _qtdEstrelas=widget.sistemaPlanetario.qtdEstrelas;
   }
   Widget build(BuildContext context) {
     return Container(
@@ -51,7 +51,7 @@ class _exibir_sistema_planetarioState extends State<exibir_sistema_planetario> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, "/editar_sistema_planetario", arguments: widget.arguments);
+                  Navigator.pushNamed(context, "/editar_sistema_planetario", arguments: widget.sistemaPlanetario);
                   // do something
                 },
               ),

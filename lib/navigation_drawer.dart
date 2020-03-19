@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:universo_bd/estrela/listar_estrela.dart';
-import 'package:universo_bd/planeta/listar_planeta.dart';
 import 'custom_icons_icons.dart';
 
 class navigation_drawer extends StatefulWidget {
@@ -119,6 +117,23 @@ class _navigation_drawerState extends State<navigation_drawer> {
                 }
               },
             ),
+            ListTile(
+              leading: Icon(CustomIcons.solar_system, color: Color.fromRGBO(64, 75, 96, 0.9),),
+              title: Text(
+                'Relacionamentos',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(64, 75, 96, 0.9)
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+                if(widget.tela != "menu_relacoes"){
+                  Navigator.of(context).pushNamed("/menu_relacoes");
+                }
+              },
+            ),
             Divider(),
             ListTile(
               leading: Icon(Icons.exit_to_app, color: Color.fromRGBO(64, 75, 96, 0.9),),
@@ -133,7 +148,6 @@ class _navigation_drawerState extends State<navigation_drawer> {
               onTap: () {
                 FirebaseAuth auth = FirebaseAuth.instance;
                 auth.signOut();
-                //Navigator.of(context).pop();
                 Navigator.pushNamedAndRemoveUntil(context,
                     "/login",
                         (_) => false

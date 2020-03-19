@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import "package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart";
 import 'package:universo_bd/custom_icons_icons.dart';
+import 'package:universo_bd/navigation_drawer.dart';
 
 class menu_relacoes extends StatefulWidget {
   @override
@@ -40,13 +41,14 @@ class _menu_relacoesState extends State<menu_relacoes> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        drawer: navigation_drawer(tela: "menu_relacoes"),
         appBar: AppBar(
           title: Text("Relações"),
         ),
         body: new StaggeredGridView.countBuilder(
-            padding: EdgeInsets.only(top:20, left: 10, right: 10, bottom: 20),
-            mainAxisSpacing: 4.0,
-            crossAxisSpacing: 4.0,
+            padding: EdgeInsets.only(top:20, left: 20, right: 20, bottom: 20),
+            mainAxisSpacing: 10.0,
+            crossAxisSpacing: 10.0,
             crossAxisCount: 2,
             itemCount: 3,
             itemBuilder:(BuildContext context, int index) => new Container(
