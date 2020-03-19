@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
@@ -6,6 +7,9 @@ import 'package:universo_bd/classes/Estrela.dart';
 import 'package:universo_bd/classes/GiganteVermelha.dart';
 import 'package:universo_bd/classes/SistemaEstrela.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
+import 'package:universo_bd/custom_icon_star_icons.dart';
+import 'package:universo_bd/dialog_estrela.dart';
+
 
 class cadastrar_sistema_estrela extends StatefulWidget {
   @override
@@ -21,6 +25,11 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
   Estrela selectedStar, valueStar;
   Firestore db = Firestore.instance;
   double _diferencaCards=10;
+
+  List<String> _titulos = List();
+  List<String> _nomeRotas = List();
+  List<Icon> _icones = List();
+
 
   void validarCampos(){
     if(hintSistema == "Sistemas Planetários" || hintEstrela == "Estrelas"){
@@ -43,6 +52,24 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
       //Navigator.pop(context);
     }
   }
+  void initState(){
+    super.initState;
+    _titulos.add(" Anã Vermelha ");
+    _titulos.add(" Anã Branca  ");
+    _titulos.add("Estrela Binária");
+    _titulos.add("Gigante Azul");
+    _titulos.add("Gigante Vermelha");
+    _nomeRotas.add("/cadastrar_estrela");
+    _nomeRotas.add("/cadastrar_estrela");
+    _nomeRotas.add("/cadastrar_estrela");
+    _nomeRotas.add("/cadastrar_estrela");
+    _nomeRotas.add("/cadastrar_gigante_vermelha");
+    _icones.add(Icon(CustomIconStar.stars1, size: 60));
+    _icones.add(Icon(CustomIconStar.stars2, size: 60));
+    _icones.add(Icon(CustomIconStar.stars3, size: 60));
+    _icones.add(Icon(CustomIconStar.stars4, size: 60));
+    _icones.add(Icon(CustomIconStar.stars5, size: 60));
+}
 
   Widget build(BuildContext context) {
     return Container(
@@ -250,7 +277,10 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
                                         splashColor: Colors.deepPurple, // inkwell color
                                         child: SizedBox(width: 45, height: 45, child: Icon(Icons.add, color: Colors.white,)),
                                         onTap: () {
-                                          //Navigator.pushNamed(context, "/cadastrar_planeta");
+                                          showDialog(
+                                              context: context,
+                                              child: dialog_estrela(),
+                                          );
                                         },
                                       ),
                                     ),
