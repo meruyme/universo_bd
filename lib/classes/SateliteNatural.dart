@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SateliteNatural{
 
@@ -38,6 +39,21 @@ class SateliteNatural{
 
   set id(String value) {
     _id = value;
+  }
+
+  void deletarSateliteNatural() async{
+    Firestore db = Firestore.instance;
+    db.collection("satelites_naturais").document(id).delete();
+    await db.collection("orbitantes").where("idSatelite", isEqualTo: id).getDocuments().then((snapshot){
+      for(DocumentSnapshot item in snapshot.documents){
+        db.collection("orbitantes").document(item.documentID).delete();
+      }
+    });
+    Fluttertoast.showToast(
+      msg: "Satélite Natural deletado com sucesso!",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+    );
   }
 
   void editarSateliteNatural(){

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
 
 class SistemaPlanetario{
@@ -50,6 +51,27 @@ class SistemaPlanetario{
     _qtdEstrelas = value;
   }
 
+  void deletarSistemaPlanetario() async{
+    Firestore db = Firestore.instance;
+    db.collection("sistemas_planetarios").document(id).delete();
+    await db.collection("sistemas_planetas").where("idSistema", isEqualTo: id).getDocuments().then((snapshot){
+      for(DocumentSnapshot item in snapshot.documents){
+        db.collection("sistemas_planetas").document(item.documentID).delete();
+      }
+    });
+    await db.collection("sistemas_estrelas").where("idSistema", isEqualTo: id).getDocuments().then((snapshot){
+      for(DocumentSnapshot item in snapshot.documents){
+        db.collection("sistemas_estrelas").document(item.documentID).delete();
+      }
+    });
+    galaxia.qtdSistemas--;
+    galaxia.editarGalaxia();
+    Fluttertoast.showToast(
+      msg: "Sistema Planetário deletado com sucesso!",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+    );
+  }
 
   void adicionarSistemaPlanetario(){
     Firestore db = Firestore.instance;
