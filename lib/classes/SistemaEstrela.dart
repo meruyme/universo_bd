@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:universo_bd/classes/Estrela.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
 
@@ -32,6 +33,32 @@ class SistemaEstrela{
       "idEstrela": estrela.id,
       "idSistema": sistemaPlanetario.id
     });
+    sistemaPlanetario.qtdEstrelas += 1;
+    sistemaPlanetario.editarSistemaPlanetario(sistemaPlanetario.galaxia);
+  }
+
+  void deletarSistemaEstrela(){
+    Firestore db = Firestore.instance;
+    sistemaPlanetario.qtdEstrelas -= 1;
+    sistemaPlanetario.editarSistemaPlanetario(sistemaPlanetario.galaxia);
+    db.collection("sistemas_estrelas").document(id).delete();
+    Fluttertoast.showToast(
+      msg: "Relacionamento deletado com sucesso!",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+    );
+  }
+
+  void editarSistemaEstrela(SistemaPlanetario sistemaAntigo){
+    Firestore db = Firestore.instance;
+    db.collection("sistemas_estrelas").document(id).setData({
+      "idEstrela": estrela.id,
+      "idSistema": sistemaPlanetario.id
+    });
+    if(sistemaPlanetario.id != sistemaAntigo.id){
+      sistemaPlanetario.editarSistemaPlanetario(sistemaPlanetario.galaxia);
+      sistemaAntigo.editarSistemaPlanetario(sistemaAntigo.galaxia);
+    }
   }
 
 }
