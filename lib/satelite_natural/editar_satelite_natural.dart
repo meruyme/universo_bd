@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
+import 'package:universo_bd/arguments/ArgumentsSatelite.dart';
 import '../custom_text_field.dart';
 import 'package:universo_bd/classes/SateliteNatural.dart';
 
@@ -58,7 +59,7 @@ class _editar_satelite_naturalState extends State<editar_satelite_natural> {
         gravity: ToastGravity.BOTTOM,
       );
       Navigator.popUntil(context, ModalRoute.withName("/listar_satelite_natural"));
-      Navigator.pushNamed(context, "/exibir_satelite_natural", arguments: widget.sateliteNatural);
+      Navigator.pushNamed(context, "/exibir_satelite_natural", arguments: ArgumentsSatelite(widget.sateliteNatural, "exibir_satelite_natural"));
     }
   }
 

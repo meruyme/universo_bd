@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:universo_bd/classes/Estrela.dart';
+import 'package:universo_bd/arguments/ArgumentsEstrela.dart';
 import 'package:universo_bd/show_card.dart';
 
 class exibir_estrela extends StatefulWidget {
 
-  Estrela estrela;
+  ArgumentsEstrela arguments;
 
-  exibir_estrela({this.estrela});
+  exibir_estrela({this.arguments});
 
   _exibir_estrelaState createState() => _exibir_estrelaState();
 }
@@ -23,11 +23,39 @@ class _exibir_estrelaState extends State<exibir_estrela> {
 
   void initState() {
     super.initState();
-    _nome = widget.estrela.nome;
-    _distancia = widget.estrela.distanciaTerra;
-    _idade = widget.estrela.idade;
-    _tamanho = widget.estrela.tamanho;
-    _tipo = widget.estrela.tipo;
+    _nome = widget.arguments.estrela.nome;
+    _distancia = widget.arguments.estrela.distanciaTerra;
+    _idade = widget.arguments.estrela.idade;
+    _tamanho = widget.arguments.estrela.tamanho;
+    _tipo = widget.arguments.estrela.tipo;
+  }
+
+  List<Widget> actionsAppBar(){
+    if(widget.arguments.tela == "relations"){
+      return null;
+    }
+    else{
+      return <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.edit,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, "/editar_estrela", arguments: widget.arguments.estrela);
+          },
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.delete,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            // do something
+          },
+        )
+      ];
+    }
   }
 
   Widget build(BuildContext context) {
@@ -44,56 +72,35 @@ class _exibir_estrelaState extends State<exibir_estrela> {
             title: Text(
                 "Estrela $_nome"
             ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, "/editar_estrela", arguments: widget.estrela);
-                },
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.delete,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  // do something
-                },
-              )
-            ],
+            actions: actionsAppBar()
           ),
           body: SingleChildScrollView(
             padding: EdgeInsets.all(20),
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 show_card(
                   titulo: "Nome: ",
-                  conteudo: widget.estrela.nome,
+                  conteudo: _nome,
                   diferencaCards: _diferencaCards,
                 ),
                 show_card(
                   titulo: "Tamanho: ",
-                  conteudo: widget.estrela.tamanho.toString() + "Km",
+                  conteudo: _tamanho.toString() + "Km",
                   diferencaCards: _diferencaCards,
                 ),
                 show_card(
                   titulo: "Idade: ",
-                  conteudo: widget.estrela.idade.toString() + " Bilhões de anos",
+                  conteudo: _idade.toString() + " Bilhões de anos",
                   diferencaCards: _diferencaCards,
                 ),
                 show_card(
                   titulo: "Distância da Terra: ",
-                  conteudo: widget.estrela.distanciaTerra.toString() + " Anos-luz",
+                  conteudo: _distancia.toString() + " Anos-luz",
                   diferencaCards: _diferencaCards,
                 ),
                 show_card(
                   titulo: "Tipo da estrela: ",
-                  conteudo: widget.estrela.tipo,
+                  conteudo: _tipo,
                   diferencaCards: _diferencaCards,
                 ),
               ],

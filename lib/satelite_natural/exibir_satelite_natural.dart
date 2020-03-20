@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
-import 'package:universo_bd/classes/SateliteNatural.dart';
+import 'package:universo_bd/arguments/ArgumentsSatelite.dart';
 import 'package:universo_bd/show_card.dart';
 
 class exibir_satelite_natural extends StatefulWidget {
 
-  SateliteNatural sateliteNatural;
+  ArgumentsSatelite arguments;
 
-  exibir_satelite_natural({this.sateliteNatural});
+  exibir_satelite_natural({this.arguments});
 
   @override
   _exibir_satelite_naturalState createState() => _exibir_satelite_naturalState();
@@ -22,10 +22,37 @@ class _exibir_satelite_naturalState extends State<exibir_satelite_natural> {
   ScrollController scrollController = ScrollController();
   bool isExpanded = false;
 
+  List<Widget> actionsAppBar(){
+    if(widget.arguments.tela == "relations"){
+      return null;
+    }
+    else{
+      return <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.edit,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, "/editar_satelite_natural", arguments: widget.arguments.sateliteNatural);
+          },
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.delete,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            // do something
+          },
+        )
+      ];
+    }
+  }
+
 
   Widget build(BuildContext context) {
 
-    width = MediaQuery.of(context).size.width;
 
     return Container(
         decoration: BoxDecoration(
@@ -38,48 +65,27 @@ class _exibir_satelite_naturalState extends State<exibir_satelite_natural> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-                "Satélite " + widget.sateliteNatural.nome
+                "Satélite " + widget.arguments.sateliteNatural.nome
             ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, "/editar_satelite_natural", arguments: widget.sateliteNatural);
-                },
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.delete,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  // do something
-                },
-              )
-            ],
+            actions: actionsAppBar()
           ),
           body: SingleChildScrollView(
             padding: EdgeInsets.all(20),
             child: Column(
-              //crossAxisAlignment: CrossAxisAlignment.stretch,
-              // mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 show_card(
                   titulo: "Nome: ",
-                  conteudo: widget.sateliteNatural.nome,
+                  conteudo: widget.arguments.sateliteNatural.nome,
                   diferencaCards: _diferencaCards,
                 ),
                 show_card(
                   titulo: "Tamanho: ",
-                  conteudo: widget.sateliteNatural.tamanho.toString() + " Km",
+                  conteudo: widget.arguments.sateliteNatural.tamanho.toString() + " Km",
                   diferencaCards: _diferencaCards,
                 ),
                 show_card(
                   titulo: "Massa: ",
-                  conteudo: widget.sateliteNatural.massa.toString() + " Kg",
+                  conteudo: widget.arguments.sateliteNatural.massa.toString() + " Kg",
                   diferencaCards: _diferencaCards,
                 ),
                 Padding(
@@ -105,9 +111,9 @@ class _exibir_satelite_naturalState extends State<exibir_satelite_natural> {
                           ListView.builder(
                             shrinkWrap: true,
                             controller: scrollController,
-                            itemCount: widget.sateliteNatural.componentes.length,
+                            itemCount: widget.arguments.sateliteNatural.componentes.length,
                             itemBuilder: (context, position){
-                              List aux = widget.sateliteNatural.componentes[position].split("-");
+                              List aux = widget.arguments.sateliteNatural.componentes[position].split("-");
                               return Padding(
                                 padding: EdgeInsetsDirectional.only(start: 20, bottom: 10, end: 10, top: 5),
                                 child: Text("Gás: " + aux[0] +

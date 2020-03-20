@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:universo_bd/planeta/cadastrar_planeta.dart';
+import 'package:universo_bd/arguments/ArgumentsPlaneta.dart';
 import 'package:universo_bd/classes/Planeta.dart';
 import 'package:universo_bd/custom_card.dart';
 import 'package:universo_bd/custom_icons_icons.dart';
-import 'package:universo_bd/planeta/exibir_planeta.dart';
 import 'package:universo_bd/navigation_drawer.dart';
 
 class listar_planeta extends StatefulWidget {
@@ -112,19 +111,10 @@ class _listar_planetaState extends State<listar_planeta> {
                     shrinkWrap: true,
                     itemCount: snapshot.data.documents.length,
                     itemBuilder: (context, position){
-                      //List<Planeta> listaItens = snapshot.data;
                       Planeta planeta = listaPlanetas[position];
-                      //planeta.exibirPlaneta();
                       return GestureDetector(
                         onTap: (){
-                          Navigator.pushNamed(context, "/exibir_planeta", arguments: planeta);
-
-                          /*Navigator.push(
-                              context,
-                            MaterialPageRoute(
-                                builder: (context) => exibir_planeta(planeta: planeta,)
-                            )
-                          );*/
+                          Navigator.pushNamed(context, "/exibir_planeta", arguments: ArgumentsPlaneta(planeta, "exibir_planeta"));
                         },
                         child: custom_card(
                             icon: CustomIcons.planet,

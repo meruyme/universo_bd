@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
+import 'package:universo_bd/arguments/ArgumentsPlaneta.dart';
 import 'package:universo_bd/show_card.dart';
-import '../classes/Planeta.dart';
 
 class exibir_planeta extends StatefulWidget {
 
-  Planeta planeta;
+  ArgumentsPlaneta arguments;
 
-  exibir_planeta({this.planeta});
+  exibir_planeta({this.arguments});
 
   @override
   _exibir_planetaState createState() => _exibir_planetaState();
@@ -17,14 +17,39 @@ class exibir_planeta extends StatefulWidget {
 class _exibir_planetaState extends State<exibir_planeta> {
   @override
 
-  double width;
   double _diferencaCards=10;
   ScrollController scrollController = ScrollController();
   bool isExpanded = false;
 
-  Widget build(BuildContext context) {
+  List<Widget> actionsAppBar(){
+    if(widget.arguments.tela == "relations"){
+      return null;
+    }
+    else{
+      return <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.edit,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, "/editar_planeta", arguments: widget.arguments.planeta);
+          },
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.delete,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            // do something
+          },
+        )
+      ];
+    }
+  }
 
-    width = MediaQuery.of(context).size.width;
+  Widget build(BuildContext context) {
 
     return Container(
         decoration: BoxDecoration(
@@ -37,28 +62,9 @@ class _exibir_planetaState extends State<exibir_planeta> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-                "Planeta " + widget.planeta.nome
+                "Planeta " + widget.arguments.planeta.nome
             ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, "/editar_planeta", arguments: widget.planeta);
-                },
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.delete,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  // do something
-                },
-              )
-            ],
+            actions: actionsAppBar()
           ),
           body: SingleChildScrollView(
             padding: EdgeInsets.all(20),
@@ -68,22 +74,22 @@ class _exibir_planetaState extends State<exibir_planeta> {
               children: <Widget>[
                 show_card(
                   titulo: "Nome: ",
-                  conteudo: widget.planeta.nome,
+                  conteudo: widget.arguments.planeta.nome,
                   diferencaCards: _diferencaCards,
                 ),
                 show_card(
                   titulo: "Tamanho: ",
-                  conteudo: widget.planeta.tamanho.toString() + " Km",
+                  conteudo: widget.arguments.planeta.tamanho.toString() + " Km",
                   diferencaCards: _diferencaCards,
                 ),
                 show_card(
                   titulo: "Massa: ",
-                  conteudo: widget.planeta.massa.toString() + " Kg",
+                  conteudo: widget.arguments.planeta.massa.toString() + " Kg",
                   diferencaCards: _diferencaCards,
                 ),
                 show_card(
                   titulo: "Rotação: ",
-                  conteudo: widget.planeta.velocidadeRotacao.toString() + " Km/h",
+                  conteudo: widget.arguments.planeta.velocidadeRotacao.toString() + " Km/h",
                   diferencaCards: _diferencaCards,
                 ),
                 Padding(
@@ -109,9 +115,9 @@ class _exibir_planetaState extends State<exibir_planeta> {
                         ListView.builder(
                           shrinkWrap: true,
                           controller: scrollController,
-                          itemCount: widget.planeta.componentes.length,
+                          itemCount: widget.arguments.planeta.componentes.length,
                           itemBuilder: (context, position){
-                            List aux = widget.planeta.componentes[position].split("-");
+                            List aux = widget.arguments.planeta.componentes[position].split("-");
                             return Padding(
                                     padding: EdgeInsetsDirectional.only(start: 20, bottom: 10, end: 10, top: 5),
                                     child: Text("Gás: " + aux[0] +

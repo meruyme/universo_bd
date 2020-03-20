@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:universo_bd/arguments/ArgumentsSistema.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
 import 'package:universo_bd/custom_card.dart';
@@ -107,7 +108,7 @@ class _listar_sistema_planetarioState extends State<listar_sistema_planetario> {
                               return GestureDetector(
                                 onTap: (){
                                   Navigator.pushNamed(context, "/exibir_sistema_planetario",
-                                      arguments: sistemaPlanetario);
+                                      arguments: ArgumentsSistema(sistemaPlanetario, "exibir_sistema_planetario"));
                                 },
                                 child: custom_card(
                                     icon: CustomIcons.solar_system,

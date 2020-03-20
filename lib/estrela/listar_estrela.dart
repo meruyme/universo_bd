@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:universo_bd/arguments/ArgumentsEstrela.dart';
+import 'package:universo_bd/arguments/ArgumentsGiganteVermelha.dart';
 import 'package:universo_bd/classes/Estrela.dart';
 import 'package:universo_bd/classes/GiganteVermelha.dart';
 import 'package:universo_bd/custom_card.dart';
@@ -19,42 +21,6 @@ class _listar_estrelaState extends State<listar_estrela> {
   Firestore db = Firestore.instance;
   final key = new GlobalKey<ScaffoldState>();
   ScrollController scrollController;
-
-
-  /*Future<List<Planeta>> _recuperarPlanetas() async{
-
-    Firestore db = Firestore.instance;
-    QuerySnapshot querySnapshot = await db.collection("planetas")
-      .getDocuments();
-
-    List<Planeta> listaPlanetas = List();
-    for(DocumentSnapshot item in querySnapshot.documents){
-      var dados = item.data;
-      Planeta planeta = Planeta();
-      planeta.id = item.documentID;
-      planeta.nome = dados["nome"];
-      planeta.massa = double.tryParse(dados["massa"].toString());
-      planeta.tamanho = double.tryParse(dados["tamanho"].toString());
-      listaPlanetas.add(planeta);
-
-    }
-
-    return listaPlanetas;
-
-  }*/
-
-  @override
-  void initState() {
-
-    /*new Future<Null>.delayed(Duration.zero, () {
-        key.currentState.showSnackBar(
-            SnackBar(content: Text("Usuário validado com sucesso!"))
-        );
-      });*/
-
-    // TODO: implement initState
-    super.initState();
-  }
 
 
   @override
@@ -137,16 +103,15 @@ class _listar_estrelaState extends State<listar_estrela> {
                       shrinkWrap: true,
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context, position){
-                        //List<Planeta> listaItens = snapshot.data;
                         Estrela estrela = listaEstrelas[position];
 
                         return GestureDetector(
                           onTap: (){
                             if(estrela.tipo != "Gigante Vermelha"){
-                              Navigator.pushNamed(context, "/exibir_estrela", arguments: estrela);
+                              Navigator.pushNamed(context, "/exibir_estrela", arguments: ArgumentsEstrela(estrela, "exibir_estrela"));
                             }
                             else{
-                              Navigator.pushNamed(context, "/exibir_gigante_vermelha", arguments: estrela);
+                              Navigator.pushNamed(context, "/exibir_gigante_vermelha", arguments: ArgumentsGiganteVermelha(estrela, "exibir_gigante_vermelha"));
                             }
                           },
                           child: custom_card(
@@ -162,60 +127,6 @@ class _listar_estrelaState extends State<listar_estrela> {
 
               },
             )
-
-          /*FutureBuilder<List<Planeta>>(
-            future: _recuperarPlanetas(),
-            builder: (context, snapshot){
-              switch(snapshot.connectionState){
-                case ConnectionState.none:
-                case ConnectionState.waiting:
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 10),
-                          child: Text(
-                            "Carregando planetas",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white
-                            ),
-                          ),
-                        ),
-                        CircularProgressIndicator()
-                      ],
-                    ),
-                  );
-                  break;
-                case ConnectionState.active:
-                case ConnectionState.done:
-                  return ListView.builder(
-                      padding: EdgeInsets.only(top: 16),
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, position){
-                        List<Planeta> listaItens = snapshot.data;
-                        Planeta planeta = listaItens[position];
-
-                        return GestureDetector(
-                          onTap: (){
-                            print(planeta.nome);
-                          },
-                          child: custom_card(
-                              icon: Icons.brightness_7,
-                              title: planeta.nome,
-                              subtitle1: "Tamanho: " + planeta.tamanho.toString() + "km",
-                              subtitle2: "Massa: " + planeta.massa.toString() + "kg"
-                          ),
-                        );
-                      }
-                  );
-                  break;
-              }
-            },
-          )*/
         ),
       ),
     );

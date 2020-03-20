@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:universo_bd/classes/Planeta.dart';
+import 'package:universo_bd/arguments/ArgumentsSatelite.dart';
 import 'package:universo_bd/classes/SateliteNatural.dart';
 import 'package:universo_bd/custom_card.dart';
 import 'package:universo_bd/custom_icons_icons.dart';
@@ -16,29 +16,6 @@ class listar_satelite_natural extends StatefulWidget {
 class _listar_satelite_naturalState extends State<listar_satelite_natural> {
 
   Firestore db = Firestore.instance;
-
-
-  /*Future<List<Planeta>> _recuperarPlanetas() async{
-
-    Firestore db = Firestore.instance;
-    QuerySnapshot querySnapshot = await db.collection("planetas")
-      .getDocuments();
-
-    List<Planeta> listaPlanetas = List();
-    for(DocumentSnapshot item in querySnapshot.documents){
-      var dados = item.data;
-      Planeta planeta = Planeta();
-      planeta.id = item.documentID;
-      planeta.nome = dados["nome"];
-      planeta.massa = double.tryParse(dados["massa"].toString());
-      planeta.tamanho = double.tryParse(dados["tamanho"].toString());
-      listaPlanetas.add(planeta);
-
-    }
-
-    return listaPlanetas;
-
-  }*/
 
 
   @override
@@ -113,7 +90,7 @@ class _listar_satelite_naturalState extends State<listar_satelite_natural> {
                         SateliteNatural sateliteNatural = listaSatelites[position];
                         return GestureDetector(
                           onTap: (){
-                            Navigator.pushNamed(context, "/exibir_satelite_natural", arguments: sateliteNatural);
+                            Navigator.pushNamed(context, "/exibir_satelite_natural", arguments: ArgumentsSatelite(sateliteNatural, "exibir_satelite_natural"));
                           },
                           child: custom_card(
                               icon: CustomIcons.satellite,
@@ -128,60 +105,6 @@ class _listar_satelite_naturalState extends State<listar_satelite_natural> {
 
               },
             )
-
-          /*FutureBuilder<List<Planeta>>(
-            future: _recuperarPlanetas(),
-            builder: (context, snapshot){
-              switch(snapshot.connectionState){
-                case ConnectionState.none:
-                case ConnectionState.waiting:
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 10),
-                          child: Text(
-                            "Carregando planetas",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white
-                            ),
-                          ),
-                        ),
-                        CircularProgressIndicator()
-                      ],
-                    ),
-                  );
-                  break;
-                case ConnectionState.active:
-                case ConnectionState.done:
-                  return ListView.builder(
-                      padding: EdgeInsets.only(top: 16),
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, position){
-                        List<Planeta> listaItens = snapshot.data;
-                        Planeta planeta = listaItens[position];
-
-                        return GestureDetector(
-                          onTap: (){
-                            print(planeta.nome);
-                          },
-                          child: custom_card(
-                              icon: Icons.brightness_7,
-                              title: planeta.nome,
-                              subtitle1: "Tamanho: " + planeta.tamanho.toString() + "km",
-                              subtitle2: "Massa: " + planeta.massa.toString() + "kg"
-                          ),
-                        );
-                      }
-                  );
-                  break;
-              }
-            },
-          )*/
         ),
       ),
     );

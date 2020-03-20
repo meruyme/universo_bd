@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/outline_dropdown_button.dart';
+import 'package:universo_bd/arguments/ArgumentsSistema.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
 import 'package:universo_bd/custom_text_field.dart';
@@ -72,7 +73,7 @@ class _editar_sistema_planetarioState extends State<editar_sistema_planetario> {
       );
       Navigator.popUntil(context, ModalRoute.withName("/listar_sistema_planetario"));
       Navigator.pushNamed(context, "/exibir_sistema_planetario",
-          arguments: widget.sistemaPlanetario);
+          arguments: ArgumentsSistema(widget.sistemaPlanetario, "exibir_sistema_planetario"));
     }
   }
 
@@ -137,7 +138,16 @@ class _editar_sistema_planetarioState extends State<editar_sistema_planetario> {
                       final galaxiasDB = snapshot.data.documents;
                       List<DropdownMenuItem> itens = List();
                       List<Galaxia> listaGalaxias = List();
-
+                      Galaxia aux = Galaxia();
+                      aux.nome = "Galáxias";
+                      itens.add(
+                          DropdownMenuItem(
+                              value: aux,
+                              child: Container(
+                                child: Text(aux.nome, style: TextStyle(color: Colors.white),),
+                              )
+                          )
+                      );
                       for(DocumentSnapshot item in galaxiasDB) {
                         var dados = item.data;
                         Galaxia galaxia = Galaxia();

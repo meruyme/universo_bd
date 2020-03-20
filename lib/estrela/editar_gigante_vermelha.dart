@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:universo_bd/arguments/ArgumentsGiganteVermelha.dart';
 import 'package:universo_bd/classes/GiganteVermelha.dart';
 import 'package:universo_bd/custom_text_field.dart';
 
@@ -58,7 +59,7 @@ class _editar_gigante_vermelhaState extends State<editar_gigante_vermelha> {
         gravity: ToastGravity.BOTTOM,
       );
       Navigator.popUntil(context, ModalRoute.withName("/listar_estrela"));
-      Navigator.pushNamed(context, "/exibir_gigante_vermelha", arguments: widget.estrela);
+      Navigator.pushNamed(context, "/exibir_gigante_vermelha", arguments: ArgumentsGiganteVermelha(widget.estrela, "exibir_gigante_vermelha"));
     }
   }
 

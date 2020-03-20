@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
+import 'package:universo_bd/arguments/ArgumentsPlaneta.dart';
 import '../classes/Planeta.dart';
 import '../custom_text_field.dart';
 
@@ -61,7 +62,7 @@ class _editar_planetaState extends State<editar_planeta> {
         gravity: ToastGravity.BOTTOM,
       );
       Navigator.popUntil(context, ModalRoute.withName("/listar_planeta"));
-      Navigator.pushNamed(context, "/exibir_planeta", arguments: widget.planeta);
+      Navigator.pushNamed(context, "/exibir_planeta", arguments: ArgumentsPlaneta(widget.planeta, "exibir_planeta"));
     }
   }
 

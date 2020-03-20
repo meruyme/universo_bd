@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:universo_bd/arguments/ArgumentsEstrela.dart';
 import 'package:universo_bd/classes/Estrela.dart';
 import 'package:universo_bd/custom_text_field.dart';
 
@@ -56,7 +57,7 @@ class _editar_estrelaState extends State<editar_estrela> {
         gravity: ToastGravity.BOTTOM,
       );
       Navigator.popUntil(context, ModalRoute.withName("/listar_estrela"));
-      Navigator.pushNamed(context, "/exibir_estrela", arguments: widget.estrela);
+      Navigator.pushNamed(context, "/exibir_estrela", arguments: ArgumentsEstrela(widget.estrela, "exibir_estrela"));
     }
   }
 
