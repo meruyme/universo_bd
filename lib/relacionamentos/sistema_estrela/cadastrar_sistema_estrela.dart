@@ -50,9 +50,11 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
       );
-      //Navigator.pop(context);
+      Navigator.pop(context);
     }
   }
+
+  @override
   void initState(){
     super.initState;
     _titulos.add(" Anã Vermelha ");
@@ -70,7 +72,7 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
     _icones.add(Icon(CustomIconStar.stars3, size: 60));
     _icones.add(Icon(CustomIconStar.stars4, size: 60));
     _icones.add(Icon(CustomIconStar.stars5, size: 60));
-}
+  }
 
   Widget build(BuildContext context) {
     return Container(
@@ -90,8 +92,6 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
           body: SingleChildScrollView(
             padding: EdgeInsets.all(20),
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 StreamBuilder<QuerySnapshot>(
                   stream: db.collection("sistemas_planetarios").orderBy("nome").snapshots(),
