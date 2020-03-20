@@ -43,7 +43,7 @@ class _exibir_sistema_planetarioState extends State<exibir_sistema_planetario> {
             color: Colors.white,
           ),
           onPressed: () {
-            // do something
+            confirmarDeletar();
           },
         )
       ];
@@ -58,6 +58,44 @@ class _exibir_sistema_planetarioState extends State<exibir_sistema_planetario> {
     _qtdPlanetas=widget.arguments.sistemaPlanetario.qtdPlanetas;
     _qtdEstrelas=widget.arguments.sistemaPlanetario.qtdEstrelas;
   }
+
+  confirmarDeletar(){
+    // set up the buttons
+    Widget cancelButton = FlatButton(
+      textColor: Colors.deepPurpleAccent,
+      child: Text("Cancelar"),
+      onPressed:  () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+    Widget continueButton = FlatButton(
+      textColor: Colors.deepPurpleAccent,
+      child: Text("Continuar"),
+      onPressed:  () {
+        widget.arguments.sistemaPlanetario.deletarSistemaPlanetario();
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.popUntil(context, ModalRoute.withName("/listar_sistema_planetario"));
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Deletar sistema planetário"),
+      content: Text("Você gostaria de deletar o sistema planetário $_nome?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(

@@ -43,11 +43,49 @@ class _exibir_satelite_naturalState extends State<exibir_satelite_natural> {
             color: Colors.white,
           ),
           onPressed: () {
-            // do something
+            confirmarDeletar();
           },
         )
       ];
     }
+  }
+
+  confirmarDeletar(){
+    // set up the buttons
+    String _nome = widget.arguments.sateliteNatural.nome;
+    Widget cancelButton = FlatButton(
+      textColor: Colors.deepPurpleAccent,
+      child: Text("Cancelar"),
+      onPressed:  () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+    Widget continueButton = FlatButton(
+      textColor: Colors.deepPurpleAccent,
+      child: Text("Continuar"),
+      onPressed:  () {
+        widget.arguments.sateliteNatural.deletarSateliteNatural();
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.popUntil(context, ModalRoute.withName("/listar_satelite_natural"));
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Deletar satélite natural"),
+      content: Text("Você gostaria de deletar o satélite natural $_nome?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
 
