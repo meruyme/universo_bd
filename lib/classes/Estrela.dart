@@ -1,4 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'Galaxia.dart';
+import 'SistemaPlanetario.dart';
 
 class Estrela{
 
@@ -49,6 +53,40 @@ class Estrela{
 
   set tipo(String value) {
     _tipo = value;
+  }
+
+  void deletarEstrela() async{
+    Firestore db = Firestore.instance;
+    db.collection("planetas").document(id).delete();
+    await db.collection("sistemas_estrelas").where("idEstrela", isEqualTo: id).getDocuments().then((snapshot){
+      for(DocumentSnapshot item in snapshot.documents){
+        db.collection("sistemas_planetarios").document(item.data["idSistema"]).get().then((snapshotSP){
+          SistemaPlanetario sp = SistemaPlanetario();
+          var dados = snapshotSP.data;
+          Galaxia galaxia = Galaxia();
+          galaxia.id = dados["idGalaxia"];
+          sp.id=item.data["idSistema"];
+          sp.idade=dados["idade"];
+          sp.qtdPlanetas=dados["qtdPlanetas"];
+          sp.qtdEstrelas=dados["qtdEstrelas"];
+          sp.nome = dados["nome"];
+          sp.galaxia = galaxia;
+          sp.qtdEstrelas--;
+          sp.editarSistemaPlanetario(sp.galaxia);
+        });
+        db.collection("sistemas_estrelas").document(item.documentID).delete();
+      }
+    });
+    await db.collection("orbitantes").where("idEstrela", isEqualTo: id).getDocuments().then((snapshot){
+      for(DocumentSnapshot item in snapshot.documents){
+        db.collection("orbitantes").document(item.documentID).delete();
+      }
+    });
+    Fluttertoast.showToast(
+      msg: "Estrela deletada com sucesso!",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+    );
   }
 
   void adicionarEstrela() {
