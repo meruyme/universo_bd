@@ -50,6 +50,9 @@ flutter:
   uses-material-design: true
 
   fonts:
+    - family: InformationIcon
+      fonts:
+        - asset: fonts/InformationIcon.ttf
     - family:  CustomIcons
       fonts:
         - asset: fonts/CustomIcons.ttf
