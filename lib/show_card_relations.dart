@@ -4,9 +4,8 @@ class show_card_relations extends StatefulWidget {
 
   String titulo;
   String conteudo;
-  double diferencaCards;
 
-  show_card_relations({this.titulo, this.conteudo, this.diferencaCards});
+  show_card_relations({this.titulo, this.conteudo});
 
   @override
   _show_card_relationsState createState() => _show_card_relationsState();
