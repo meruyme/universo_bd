@@ -42,11 +42,49 @@ class _exibir_planetaState extends State<exibir_planeta> {
             color: Colors.white,
           ),
           onPressed: () {
-            // do something
+            confirmarDeletar();
           },
         )
       ];
     }
+  }
+
+  confirmarDeletar(){
+    // set up the buttons
+    String _nome = widget.arguments.planeta.nome;
+    Widget cancelButton = FlatButton(
+      textColor: Colors.deepPurpleAccent,
+      child: Text("Cancelar"),
+      onPressed:  () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+    Widget continueButton = FlatButton(
+      textColor: Colors.deepPurpleAccent,
+      child: Text("Continuar"),
+      onPressed:  () {
+        widget.arguments.planeta.deletarPlaneta();
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.popUntil(context, ModalRoute.withName("/listar_planeta"));
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Deletar planeta"),
+      content: Text("Você gostaria de deletar o planeta $_nome?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   Widget build(BuildContext context) {
