@@ -37,6 +37,7 @@ class _editar_sistema_estrelaState extends State<editar_sistema_estrela> {
         gravity: ToastGravity.BOTTOM,
       );
     }
+
     else{
       if(widget.sistemaEstrela.sistemaPlanetario.id != selectedSystem.id){
         widget.sistemaEstrela.sistemaPlanetario.qtdEstrelas -= 1;
