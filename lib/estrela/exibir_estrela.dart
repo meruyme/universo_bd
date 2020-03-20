@@ -51,11 +51,50 @@ class _exibir_estrelaState extends State<exibir_estrela> {
             color: Colors.white,
           ),
           onPressed: () {
+            confirmarDeletar();
             // do something
           },
         )
       ];
     }
+  }
+
+  confirmarDeletar(){
+    // set up the buttons
+    String _nome = widget.arguments.estrela.nome;
+    Widget cancelButton = FlatButton(
+      textColor: Colors.deepPurpleAccent,
+      child: Text("Cancelar"),
+      onPressed:  () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+    Widget continueButton = FlatButton(
+      textColor: Colors.deepPurpleAccent,
+      child: Text("Continuar"),
+      onPressed:  () {
+        widget.arguments.estrela.deletarEstrela();
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.popUntil(context, ModalRoute.withName("/listar_estrela"));
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Deletar estrela"),
+      content: Text("Você gostaria de deletar a estrela $_nome?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   Widget build(BuildContext context) {
