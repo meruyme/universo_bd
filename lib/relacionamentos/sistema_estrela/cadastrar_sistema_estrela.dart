@@ -103,7 +103,16 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
                       final sistemasDB = snapshot.data.documents;
                       List<DropdownMenuItem> itens = List();
                       List<SistemaPlanetario> listaSistemas = List();
-
+                      SistemaPlanetario aux = SistemaPlanetario();
+                      aux.nome = "Sistemas Planetários";
+                      itens.add(
+                          DropdownMenuItem(
+                              value: aux,
+                              child: Container(
+                                child: Text(aux.nome, style: TextStyle(color: Colors.white),),
+                              )
+                          )
+                      );
                       for(DocumentSnapshot item in sistemasDB){
                         var dados = item.data;
                         Galaxia galaxia = Galaxia();
@@ -195,7 +204,16 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
                       final estrelasDB = snapshot.data.documents;
                       List<Estrela> listaEstrelas = List();
                       List<DropdownMenuItem> itens = List();
-
+                      Estrela aux = Estrela();
+                      aux.nome = "Estrelas";
+                      itens.add(
+                          DropdownMenuItem(
+                              value: aux,
+                              child: Container(
+                                child: Text(aux.nome, style: TextStyle(color: Colors.white),),
+                              )
+                          )
+                      );
                       for(DocumentSnapshot item in estrelasDB){
                         var dados = item.data;
                         Estrela estrela;
