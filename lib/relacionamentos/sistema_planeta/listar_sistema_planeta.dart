@@ -135,7 +135,7 @@ class _listar_sistema_planetaState extends State<listar_sistema_planeta> {
 
                                       return GestureDetector(
                                         onTap: (){
-                                          //Navigator.pushNamed(context, "/exibir_planeta", arguments: planeta);
+                                          Navigator.pushNamed(context, "/exibir_sistema_planeta", arguments: sistemaPlaneta);
                                         },
                                         child: custom_card_relations(
                                           icon: CustomIcons.solar_system,
