@@ -29,7 +29,7 @@ class _editar_sistema_estrelaState extends State<editar_sistema_estrela> {
   Firestore db = Firestore.instance;
   double _diferencaCards=10;
 
-  void validarCampos(){
+  void validarCampos() async{
     if(hintSistema == "Sistemas Planetários" || hintEstrela == "Estrelas"){
       Fluttertoast.showToast(
         msg: "Selecione um sistema e uma estrela.",
@@ -44,15 +44,22 @@ class _editar_sistema_estrelaState extends State<editar_sistema_estrela> {
         selectedSystem.qtdEstrelas += 1;
       }
       SistemaPlanetario sistemaAntigo = widget.sistemaEstrela.sistemaPlanetario;
-      widget.sistemaEstrela.sistemaPlanetario = selectedSystem;
-      widget.sistemaEstrela.estrela = selectedStar;
-      widget.sistemaEstrela.editarSistemaEstrela(sistemaAntigo);
-      Fluttertoast.showToast(
-        msg: "Relacionamento editado com sucesso!",
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-      );
-      Navigator.popUntil(context, ModalRoute.withName("/listar_sistema_estrela"));
+      await db.collection("galaxias").document(selectedSystem.galaxia.id).get().then((snapshot){
+        var dados = snapshot.data;
+        selectedSystem.galaxia.nome = dados["nome"];
+        selectedSystem.galaxia.qtdSistemas = dados["qtdSistemas"];
+        selectedSystem.galaxia.distanciaTerra = dados["distanciaTerra"];
+        widget.sistemaEstrela.sistemaPlanetario = selectedSystem;
+        widget.sistemaEstrela.estrela = selectedStar;
+        widget.sistemaEstrela.editarSistemaEstrela(sistemaAntigo);
+        Fluttertoast.showToast(
+          msg: "Relacionamento editado com sucesso!",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+        );
+        Navigator.popUntil(context, ModalRoute.withName("/listar_sistema_estrela"));
+        Navigator.pushNamed(context, "/exibir_sistema_estrela", arguments: widget.sistemaEstrela);
+      });
     }
   }
 
