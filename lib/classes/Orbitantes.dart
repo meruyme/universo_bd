@@ -1,37 +1,57 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:universo_bd/classes/Estrela.dart';
+import 'package:universo_bd/classes/Planeta.dart';
+import 'package:universo_bd/classes/SateliteNatural.dart';
 
 class Orbitantes{
 
-  String _idPlaneta;
-  String _idSatelite;
-  String _idEstrela;
+  String _id;
+  SateliteNatural _sateliteNatural;
+  Planeta _planeta;
+  Estrela _estrela;
 
-  String get idPlaneta => _idPlaneta;
 
-  set idPlaneta(String value) {
-    _idPlaneta = value;
+  String get id => _id;
+
+  set id(String value) {
+    _id = value;
   }
 
-  String get idSatelite => _idSatelite;
+  SateliteNatural get sateliteNatural => _sateliteNatural;
 
-  String get idEstrela => _idEstrela;
-
-  set idEstrela(String value) {
-    _idEstrela = value;
+  set sateliteNatural(SateliteNatural value) {
+    _sateliteNatural = value;
   }
 
-  set idSatelite(String value) {
-    _idSatelite = value;
+  Planeta get planeta => _planeta;
+
+  set planeta(Planeta value) {
+    _planeta = value;
+  }
+
+  Estrela get estrela => _estrela;
+
+  set estrela(Estrela value) {
+    _estrela = value;
   }
 
   void adicionarOrbitantes(){
     Firestore db = Firestore.instance;
     db.collection("orbitantes").add({
-      "idSatelite": idSatelite,
-      "idPlaneta": idPlaneta,
-      "idEstrela": idEstrela
+      "idSatelite": sateliteNatural.id,
+      "idPlaneta": planeta.id,
+      "idEstrela": estrela.id
     });
   }
 
+  void editarOrbitantes(){
+    Firestore db = Firestore.instance;
+    db.collection("orbitantes").document(id).setData({
+      "idSatelite": sateliteNatural.id,
+      "idPlaneta": planeta.id,
+      "idEstrela": estrela.id
+    });
+  }
 
 }
+
