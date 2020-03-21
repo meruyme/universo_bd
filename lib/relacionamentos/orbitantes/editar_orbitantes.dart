@@ -143,7 +143,7 @@ class _editar_orbitantesState extends State<editar_orbitantes> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-                "Editar Orbitantes"
+                "Editando Orbitantes"
             ),
           ),
           body: SingleChildScrollView(

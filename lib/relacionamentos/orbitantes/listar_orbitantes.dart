@@ -7,7 +7,7 @@ import 'package:universo_bd/classes/Orbitantes.dart';
 import 'package:universo_bd/classes/Planeta.dart';
 import 'package:universo_bd/classes/SateliteNatural.dart';
 import 'package:universo_bd/custom_card_orbitantes.dart';
-import 'package:universo_bd/custom_icons_icons.dart';
+import 'package:universo_bd/relations_icons_icons.dart';
 
 class listar_orbitantes extends StatefulWidget {
 
@@ -168,7 +168,7 @@ class _listar_orbitantesState extends State<listar_orbitantes> {
                                                   Navigator.pushNamed(context, "/exibir_orbitantes", arguments: orbitantes);
                                                 },
                                                 child: custom_card_orbitantes(
-                                                  icon: CustomIcons.solar_system,
+                                                  icon: RelationsIcons.orbit,
                                                   title1: "Planeta: " + orbitantes.planeta.nome,
                                                   title2: "Estrela: " + orbitantes.estrela.nome,
                                                   title3: "Satélite Natural: " + orbitantes.sateliteNatural.nome,

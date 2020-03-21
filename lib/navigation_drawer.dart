@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:universo_bd/relations_icons_icons.dart';
 import 'custom_icons_icons.dart';
 
 class navigation_drawer extends StatefulWidget {
@@ -17,7 +18,7 @@ class _navigation_drawerState extends State<navigation_drawer> {
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-          canvasColor: Colors.white//Color.fromRGBO(64, 75, 96, 0.9)
+          canvasColor: Colors.white
       ),
       child: Drawer(
         child: ListView(
@@ -118,7 +119,7 @@ class _navigation_drawerState extends State<navigation_drawer> {
               },
             ),
             ListTile(
-              leading: Icon(CustomIcons.solar_system, color: Color.fromRGBO(64, 75, 96, 0.9),),
+              leading: Icon(RelationsIcons.space, color: Color.fromRGBO(64, 75, 96, 0.9),),
               title: Text(
                 'Relacionamentos',
                 style: TextStyle(

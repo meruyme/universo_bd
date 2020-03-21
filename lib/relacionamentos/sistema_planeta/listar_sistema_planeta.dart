@@ -6,7 +6,7 @@ import 'package:universo_bd/classes/SistemaPlaneta.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
 import 'package:universo_bd/custom_card_relations.dart';
 import 'package:universo_bd/classes/Planeta.dart';
-import 'package:universo_bd/custom_icons_icons.dart';
+import 'package:universo_bd/relations_icons_icons.dart';
 
 class listar_sistema_planeta extends StatefulWidget {
 
@@ -138,7 +138,7 @@ class _listar_sistema_planetaState extends State<listar_sistema_planeta> {
                                           Navigator.pushNamed(context, "/exibir_sistema_planeta", arguments: sistemaPlaneta);
                                         },
                                         child: custom_card_relations(
-                                          icon: CustomIcons.solar_system,
+                                          icon: RelationsIcons.system_planet,
                                           title1: "Sistema Planetário: " + sistemaPlaneta.sistemaPlanetario.nome,
                                           title2: "Planeta: " + sistemaPlaneta.planeta.nome,
                                         ),

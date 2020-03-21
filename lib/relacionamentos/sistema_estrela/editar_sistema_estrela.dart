@@ -92,7 +92,7 @@ class _editar_sistema_estrelaState extends State<editar_sistema_estrela> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-                "Editar Sistema-Estrela"
+                "Editando Sistema-Estrela"
             ),
           ),
           body: SingleChildScrollView(

@@ -91,7 +91,7 @@ class _editar_sistema_planetaState extends State<editar_sistema_planeta> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-                "Relacionar Sistema-Planeta"
+                "Editando Sistema-Planeta"
             ),
           ),
           body: SingleChildScrollView(

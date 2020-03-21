@@ -7,7 +7,7 @@ import 'package:universo_bd/classes/GiganteVermelha.dart';
 import 'package:universo_bd/classes/SistemaEstrela.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
 import 'package:universo_bd/custom_card_relations.dart';
-import 'package:universo_bd/custom_icons_icons.dart';
+import 'package:universo_bd/relations_icons_icons.dart';
 
 class listar_sistema_estrela extends StatefulWidget {
 
@@ -151,7 +151,7 @@ class _listar_sistema_estrelaState extends State<listar_sistema_estrela> {
                                                   Navigator.pushNamed(context, "/exibir_sistema_estrela", arguments: sistemaEstrela);
                                                 },
                                                 child: custom_card_relations(
-                                                  icon: CustomIcons.solar_system,
+                                                  icon: RelationsIcons.system_star,
                                                   title1: "Sistema Planetário: " + sistemaEstrela.sistemaPlanetario.nome,
                                                   title2: "Estrela: " + sistemaEstrela.estrela.nome,
                                                 ),

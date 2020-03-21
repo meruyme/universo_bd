@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import "package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart";
-import 'package:universo_bd/custom_icons_icons.dart';
 import 'package:universo_bd/navigation_drawer.dart';
+import 'package:universo_bd/relations_icons_icons.dart';
 
 class menu_relacoes extends StatefulWidget {
   @override
@@ -25,9 +25,9 @@ class _menu_relacoesState extends State<menu_relacoes> {
     _nomeRotas.add("/listar_sistema_planeta");
     _nomeRotas.add("/listar_orbitantes");
     _nomeRotas.add("/listar_sistema_estrela");
-    _icones.add(Icon(CustomIcons.solar_system, size: 60));
-    _icones.add(Icon(CustomIcons.constellation, size: 60));
-    _icones.add(Icon(CustomIcons.planet, size: 60));
+    _icones.add(Icon(RelationsIcons.system_planet, size: 60));
+    _icones.add(Icon(RelationsIcons.orbit, size: 60));
+    _icones.add(Icon(RelationsIcons.system_star, size: 60));
   }
 
   @override
