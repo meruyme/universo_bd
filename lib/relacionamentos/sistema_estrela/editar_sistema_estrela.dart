@@ -30,6 +30,10 @@ class _editar_sistema_estrelaState extends State<editar_sistema_estrela> {
   double _diferencaCards=10;
 
   void validarCampos() async{
+    CollectionReference col = Firestore.instance.collection("sistemas_estrelas");
+    Query checar_estrela = await col.where("idEstrela", isEqualTo: selectedStar.id);
+    QuerySnapshot checar_sistema = await checar_estrela.where("idSistema", isEqualTo: selectedSystem.id).getDocuments();
+
     if(hintSistema == "Sistemas Planetários" || hintEstrela == "Estrelas"){
       Fluttertoast.showToast(
         msg: "Selecione um sistema e uma estrela.",
@@ -37,7 +41,14 @@ class _editar_sistema_estrelaState extends State<editar_sistema_estrela> {
         gravity: ToastGravity.BOTTOM,
       );
     }
-
+    else if(checar_sistema.documents.length != 0 &&
+        (selectedStar.id != widget.sistemaEstrela.estrela.id || selectedSystem.id != widget.sistemaEstrela.sistemaPlanetario.id)){
+      Fluttertoast.showToast(
+        msg: "Esse relacionamento já existe.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
     else{
       if(widget.sistemaEstrela.sistemaPlanetario.id != selectedSystem.id){
         widget.sistemaEstrela.sistemaPlanetario.qtdEstrelas -= 1;

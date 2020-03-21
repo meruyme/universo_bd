@@ -32,10 +32,21 @@ class _cadastrar_sistema_estrelaState extends State<cadastrar_sistema_estrela> {
   List<Icon> _icones = List();
 
 
-  void validarCampos(){
+  void validarCampos() async{
+    CollectionReference col = Firestore.instance.collection("sistemas_estrelas");
+    Query checar_estrela = await col.where("idEstrela", isEqualTo: selectedStar.id);
+    QuerySnapshot checar_sistema = await checar_estrela.where("idSistema", isEqualTo: selectedSystem.id).getDocuments();
+
     if(hintSistema == "Sistemas Planetários" || hintEstrela == "Estrelas"){
       Fluttertoast.showToast(
         msg: "Selecione um sistema e uma estrela.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+    else if(checar_sistema.documents.length != 0){
+      Fluttertoast.showToast(
+        msg: "Esse relacionamento já existe.",
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
       );
