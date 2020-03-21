@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
-import 'package:universo_bd/classes/Planeta.dart';
 import 'package:universo_bd/classes/SateliteNatural.dart';
-import 'package:universo_bd/custom_icons_icons.dart';
 import 'package:universo_bd/custom_text_field.dart';
 
 class cadastrar_satelite_natural extends StatefulWidget {
@@ -21,6 +19,30 @@ class _cadastrar_satelite_naturalState extends State<cadastrar_satelite_natural>
   TextEditingController _nomeController = new TextEditingController();
   TextEditingController _tamanhoController = new TextEditingController();
   TextEditingController _massaController = new TextEditingController();
+
+  void validarComponentes(){
+    if(_nomeComponenteController.text.isEmpty || _porcentagemComponenteController.text.isEmpty){
+      Fluttertoast.showToast(
+        msg: "Preencha todos os campos.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+    else if(double.tryParse(_porcentagemComponenteController.text) == null){
+      Fluttertoast.showToast(
+        msg: "A porcentagem deve ser um número real.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+    else{
+      componentes.add(_nomeComponenteController.text.trim()+"-"+_porcentagemComponenteController.text.trim());
+      _nomeComponenteController.clear();
+      _porcentagemComponenteController.clear();
+      setState(() {});
+      Navigator.of(context, rootNavigator: true).pop();
+    }
+  }
 
   void validarCampos(){
     String nome = _nomeController.text;
@@ -230,11 +252,7 @@ class _cadastrar_satelite_naturalState extends State<cadastrar_satelite_natural>
                                                     //side: BorderSide(color: Colors.transparent)
                                                   ),
                                                   onPressed: (){
-                                                    componentes.add(_nomeComponenteController.text.trim()+"-"+_porcentagemComponenteController.text.trim());
-                                                    _nomeComponenteController.clear();
-                                                    _porcentagemComponenteController.clear();
-                                                    setState(() {});
-                                                    Navigator.of(context, rootNavigator: true).pop();
+                                                    validarComponentes();
                                                   },
                                                 )
                                               ],

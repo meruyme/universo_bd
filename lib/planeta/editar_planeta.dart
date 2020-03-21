@@ -66,6 +66,30 @@ class _editar_planetaState extends State<editar_planeta> {
     }
   }
 
+  void validarComponentes(){
+    if(_nomeComponenteController.text.isEmpty || _porcentagemComponenteController.text.isEmpty){
+      Fluttertoast.showToast(
+        msg: "Preencha todos os campos.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+    else if(double.tryParse(_porcentagemComponenteController.text) == null){
+      Fluttertoast.showToast(
+        msg: "A porcentagem deve ser um número real.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+    else{
+      widget.planeta.componentes.add(_nomeComponenteController.text.trim()+"-"+_porcentagemComponenteController.text.trim());
+      _nomeComponenteController.clear();
+      _porcentagemComponenteController.clear();
+      setState(() {});
+      Navigator.of(context, rootNavigator: true).pop();
+    }
+  }
+
   void initState() {
     super.initState();
     _titulo=widget.planeta.nome;
@@ -274,11 +298,7 @@ class _editar_planetaState extends State<editar_planeta> {
                                                       //side: BorderSide(color: Colors.transparent)
                                                     ),
                                                     onPressed: (){
-                                                      widget.planeta.componentes.add(_nomeComponenteController.text.trim()+"-"+_porcentagemComponenteController.text.trim());
-                                                      _nomeComponenteController.clear();
-                                                      _porcentagemComponenteController.clear();
-                                                      setState(() {});
-                                                      Navigator.of(context, rootNavigator: true).pop();
+                                                      validarComponentes();
                                                     },
                                                   )
                                                 ],

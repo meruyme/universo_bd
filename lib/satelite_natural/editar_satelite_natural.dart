@@ -63,6 +63,30 @@ class _editar_satelite_naturalState extends State<editar_satelite_natural> {
     }
   }
 
+  void validarComponentes(){
+    if(_nomeComponenteController.text.isEmpty || _porcentagemComponenteController.text.isEmpty){
+      Fluttertoast.showToast(
+        msg: "Preencha todos os campos.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+    else if(double.tryParse(_porcentagemComponenteController.text) == null){
+      Fluttertoast.showToast(
+        msg: "A porcentagem deve ser um número real.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+    else{
+      widget.sateliteNatural.componentes.add(_nomeComponenteController.text.trim()+"-"+_porcentagemComponenteController.text.trim());
+      _nomeComponenteController.clear();
+      _porcentagemComponenteController.clear();
+      setState(() {});
+      Navigator.of(context, rootNavigator: true).pop();
+    }
+  }
+
   void initState() {
     super.initState();
     _titulo=widget.sateliteNatural.nome;
@@ -261,11 +285,7 @@ class _editar_satelite_naturalState extends State<editar_satelite_natural> {
                                                       //side: BorderSide(color: Colors.transparent)
                                                     ),
                                                     onPressed: (){
-                                                      widget.sateliteNatural.componentes.add(_nomeComponenteController.text.trim()+"-"+_porcentagemComponenteController.text.trim());
-                                                      _nomeComponenteController.clear();
-                                                      _porcentagemComponenteController.clear();
-                                                      setState(() {});
-                                                      Navigator.of(context, rootNavigator: true).pop();
+                                                     validarComponentes();
                                                     },
                                                   )
                                                 ],
