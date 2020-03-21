@@ -3,7 +3,7 @@ import 'package:universo_bd/arguments/ArgumentsPlaneta.dart';
 import 'package:universo_bd/arguments/ArgumentsSistema.dart';
 import 'package:universo_bd/classes/SistemaPlaneta.dart';
 import 'package:universo_bd/information_icon_icons.dart';
-import 'package:universo_bd/show_card_relations.dart';
+import 'package:universo_bd/widgets/show_card/show_card_relations.dart';
 
 class exibir_sistema_planeta extends StatefulWidget {
 

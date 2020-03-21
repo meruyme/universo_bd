@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:universo_bd/arguments/ArgumentsSistema.dart';
-import 'package:universo_bd/show_card.dart';
+import 'package:universo_bd/widgets/show_card/show_card.dart';
 
 
 class exibir_sistema_planetario extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'custom_icon_star_icons.dart';
+import '../custom_icon_star_icons.dart';
 
 class dialog_estrela extends StatefulWidget {
   @override

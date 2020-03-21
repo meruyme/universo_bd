@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universo_bd/arguments/ArgumentsSatelite.dart';
 import 'package:universo_bd/classes/SateliteNatural.dart';
-import 'package:universo_bd/custom_card.dart';
+import 'package:universo_bd/widgets/custom_card/custom_card.dart';
 import 'package:universo_bd/custom_icons_icons.dart';
-import 'package:universo_bd/navigation_drawer.dart';
+import 'package:universo_bd/widgets/navigation_drawer.dart';
 
 class listar_satelite_natural extends StatefulWidget {
 

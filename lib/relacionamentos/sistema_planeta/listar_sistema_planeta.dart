@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/SistemaPlaneta.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
-import 'package:universo_bd/custom_card_relations.dart';
+import 'package:universo_bd/widgets/custom_card/custom_card_relations.dart';
 import 'package:universo_bd/classes/Planeta.dart';
 import 'package:universo_bd/relations_icons_icons.dart';
 

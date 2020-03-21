@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
 import 'package:universo_bd/classes/Planeta.dart';
-import 'package:universo_bd/custom_text_field.dart';
+import 'package:universo_bd/widgets/custom_text_field.dart';
 
 class cadastrar_planeta extends StatefulWidget {
   @override

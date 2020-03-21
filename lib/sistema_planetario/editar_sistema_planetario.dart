@@ -5,7 +5,7 @@ import 'package:groovin_widgets/outline_dropdown_button.dart';
 import 'package:universo_bd/arguments/ArgumentsSistema.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
-import 'package:universo_bd/custom_text_field.dart';
+import 'package:universo_bd/widgets/custom_text_field.dart';
 
 class editar_sistema_planetario extends StatefulWidget {
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:universo_bd/arguments/ArgumentsEstrela.dart';
 import 'package:universo_bd/classes/Estrela.dart';
-import 'package:universo_bd/custom_text_field.dart';
+import 'package:universo_bd/widgets/custom_text_field.dart';
 
 class editar_estrela extends StatefulWidget {
 

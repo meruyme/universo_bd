@@ -6,7 +6,7 @@ import 'package:universo_bd/classes/GiganteVermelha.dart';
 import 'package:universo_bd/classes/Orbitantes.dart';
 import 'package:universo_bd/classes/Planeta.dart';
 import 'package:universo_bd/classes/SateliteNatural.dart';
-import 'package:universo_bd/custom_card_orbitantes.dart';
+import 'package:universo_bd/widgets/custom_card/custom_card_orbitantes.dart';
 import 'package:universo_bd/relations_icons_icons.dart';
 
 class listar_orbitantes extends StatefulWidget {

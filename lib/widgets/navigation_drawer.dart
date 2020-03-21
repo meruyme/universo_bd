@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:universo_bd/relations_icons_icons.dart';
-import 'custom_icons_icons.dart';
+import '../custom_icons_icons.dart';
 
 class navigation_drawer extends StatefulWidget {
 

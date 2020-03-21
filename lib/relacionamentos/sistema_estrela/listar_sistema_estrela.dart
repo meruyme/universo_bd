@@ -6,7 +6,7 @@ import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/GiganteVermelha.dart';
 import 'package:universo_bd/classes/SistemaEstrela.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
-import 'package:universo_bd/custom_card_relations.dart';
+import 'package:universo_bd/widgets/custom_card/custom_card_relations.dart';
 import 'package:universo_bd/relations_icons_icons.dart';
 
 class listar_sistema_estrela extends StatefulWidget {

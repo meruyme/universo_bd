@@ -5,10 +5,10 @@ import 'package:universo_bd/arguments/ArgumentsEstrela.dart';
 import 'package:universo_bd/arguments/ArgumentsGiganteVermelha.dart';
 import 'package:universo_bd/classes/Estrela.dart';
 import 'package:universo_bd/classes/GiganteVermelha.dart';
-import 'package:universo_bd/custom_card.dart';
+import 'package:universo_bd/widgets/custom_card/custom_card.dart';
 import 'package:universo_bd/custom_icons_icons.dart';
-import 'package:universo_bd/navigation_drawer.dart';
-import 'package:universo_bd/speed_dial_fab.dart';
+import 'package:universo_bd/widgets/navigation_drawer.dart';
+import 'package:universo_bd/widgets/speed_dial_fab.dart';
 
 class listar_estrela extends StatefulWidget {
 

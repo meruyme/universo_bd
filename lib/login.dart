@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:universo_bd/classes/Usuario.dart';
-import 'package:universo_bd/custom_text_field.dart';
+import 'package:universo_bd/widgets/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:universo_bd/planeta/listar_planeta.dart';
 
 import 'cadastrar_usuario.dart';
 

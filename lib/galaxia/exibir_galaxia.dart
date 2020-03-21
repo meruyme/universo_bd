@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
-import 'package:universo_bd/show_card.dart';
+import 'package:universo_bd/widgets/show_card/show_card.dart';
 
 
 class exibir_galaxia extends StatefulWidget {

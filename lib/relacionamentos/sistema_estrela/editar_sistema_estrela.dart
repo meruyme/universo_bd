@@ -7,7 +7,7 @@ import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/GiganteVermelha.dart';
 import 'package:universo_bd/classes/SistemaEstrela.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
-import 'package:universo_bd/dialog_estrela.dart';
+import 'package:universo_bd/estrela/dialog_estrela.dart';
 
 class editar_sistema_estrela extends StatefulWidget {
 

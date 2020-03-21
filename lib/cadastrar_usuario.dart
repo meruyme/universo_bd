@@ -1,9 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'classes/Usuario.dart';
-import 'custom_text_field.dart';
+import 'widgets/custom_text_field.dart';
 
 class cadastrar_usuario extends StatefulWidget {
   @override

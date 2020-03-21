@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
-import 'package:universo_bd/custom_text_field.dart';
+import 'package:universo_bd/widgets/custom_text_field.dart';
 
 class cadastrar_sistema_planetario extends StatefulWidget {
   @override

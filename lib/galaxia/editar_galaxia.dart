@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
 
-import '../custom_text_field.dart';
+import '../widgets/custom_text_field.dart';
 
 class editar_galaxia extends StatefulWidget {
 
@@ -18,7 +18,6 @@ class _editar_galaxiaState extends State<editar_galaxia> {
 
   TextEditingController _controllerNome;
   TextEditingController _controllerDistancia;
-  TextEditingController _controllerQtdSistemas;
 
   String _titulo="";
 

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import "package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart";
-import 'package:universo_bd/navigation_drawer.dart';
+import 'package:universo_bd/widgets/navigation_drawer.dart';
 import 'package:universo_bd/relations_icons_icons.dart';
 
 class menu_relacoes extends StatefulWidget {

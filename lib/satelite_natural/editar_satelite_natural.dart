@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
 import 'package:universo_bd/arguments/ArgumentsSatelite.dart';
-import '../custom_text_field.dart';
+import '../widgets/custom_text_field.dart';
 import 'package:universo_bd/classes/SateliteNatural.dart';
 
 

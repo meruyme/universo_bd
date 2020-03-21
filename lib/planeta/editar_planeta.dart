@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groovin_widgets/groovin_expansion_tile.dart';
 import 'package:universo_bd/arguments/ArgumentsPlaneta.dart';
 import '../classes/Planeta.dart';
-import '../custom_text_field.dart';
+import '../widgets/custom_text_field.dart';
 
 class editar_planeta extends StatefulWidget {
   @override

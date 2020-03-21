@@ -9,7 +9,7 @@ import 'package:universo_bd/classes/GiganteVermelha.dart';
 import 'package:universo_bd/classes/SistemaEstrela.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
 import 'package:universo_bd/custom_icon_star_icons.dart';
-import 'package:universo_bd/dialog_estrela.dart';
+import 'package:universo_bd/estrela/dialog_estrela.dart';
 
 
 class cadastrar_sistema_estrela extends StatefulWidget {

@@ -6,7 +6,7 @@ import 'package:universo_bd/arguments/ArgumentsSatelite.dart';
 import 'package:universo_bd/classes/Orbitantes.dart';
 
 import '../../information_icon_icons.dart';
-import '../../show_card_relations.dart';
+import '../../widgets/show_card/show_card_relations.dart';
 
 class exibir_orbitantes extends StatefulWidget {
   @override
