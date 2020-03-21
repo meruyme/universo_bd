@@ -165,7 +165,7 @@ class _listar_orbitantesState extends State<listar_orbitantes> {
 
                                               return GestureDetector(
                                                 onTap: (){
-                                                  //Navigator.pushNamed(context, "/exibir_sistema_estrela", arguments: sistemaEstrela);
+                                                  Navigator.pushNamed(context, "/exibir_orbitantes", arguments: orbitantes);
                                                 },
                                                 child: custom_card_orbitantes(
                                                   icon: CustomIcons.solar_system,

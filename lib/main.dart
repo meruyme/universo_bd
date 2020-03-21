@@ -17,6 +17,7 @@ import 'package:universo_bd/planeta/listar_planeta.dart';
 import 'package:universo_bd/login.dart';
 import 'package:universo_bd/relacionamentos/menu_relacoes.dart';
 import 'package:universo_bd/relacionamentos/orbitantes/cadastrar_orbitantes.dart';
+import 'package:universo_bd/relacionamentos/orbitantes/exibir_orbitantes.dart';
 import 'package:universo_bd/relacionamentos/orbitantes/listar_orbitantes.dart';
 import 'package:universo_bd/relacionamentos/sistema_estrela/cadastrar_sistema_estrela.dart';
 import 'package:universo_bd/relacionamentos/sistema_estrela/editar_sistema_estrela.dart';
@@ -75,6 +76,7 @@ void main(){
           "/exibir_sistema_planeta" : (context) => exibir_sistema_planeta(sistemaPlaneta: ModalRoute.of(context).settings.arguments),
           "/cadastrar_orbitantes" : (context) => cadastrar_orbitantes(),
           "/listar_orbitantes" : (context) => listar_orbitantes(),
+          "/exibir_orbitantes" : (context) => exibir_orbitantes(orbitante: ModalRoute.of(context).settings.arguments),
           "/menu_relacoes" : (context) => menu_relacoes(),
         },
         home: login(),
