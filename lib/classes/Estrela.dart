@@ -57,7 +57,7 @@ class Estrela{
 
   void deletarEstrela() async{
     Firestore db = Firestore.instance;
-    db.collection("planetas").document(id).delete();
+    db.collection("estrelas").document(id).delete();
     await db.collection("sistemas_estrelas").where("idEstrela", isEqualTo: id).getDocuments().then((snapshot){
       for(DocumentSnapshot item in snapshot.documents){
         db.collection("sistemas_planetarios").document(item.data["idSistema"]).get().then((snapshotSP){
