@@ -40,11 +40,6 @@ class _editar_galaxiaState extends State<editar_galaxia> {
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
       );
-      /*key.currentState.showSnackBar(
-        SnackBar(
-          content: Text("Preencha todos os campos."),
-        )
-    );*/
     }else if(double.tryParse(distancia)==null){
       Fluttertoast.showToast(
         msg: "Certifique-se da distância ser um número.",

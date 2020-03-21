@@ -27,7 +27,7 @@ class _editar_orbitantesState extends State<editar_orbitantes> {
 
   Planeta selectedPlanet, valuePlanet;
   SateliteNatural selectedSatellite, valueSatellite;
-  String hintPlaneta = "Planeta";
+  String hintPlaneta = "Planetas";
   String hintSatelite = "Satélites Naturais";
   String hintEstrela = "Estrelas";
   Estrela selectedStar, valueStar;

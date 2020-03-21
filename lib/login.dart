@@ -15,49 +15,6 @@ class login extends StatefulWidget {
 
 class _loginState extends State<login> {
 
-  //String _mensagemErro = "";
-  //bool _logou = false;
-  //Criando usuário com e-mail e senha
-  /*void cadastroUsuario() async{
-
-    FirebaseAuth auth = FirebaseAuth.instance;
-
-    String email = "atenas503@gmail.com";
-    String senha = "123456";
-
-    /*auth.createUserWithEmailAndPassword(
-        email: email, 
-        password: senha
-    ).then((firebaseUser){
-      print("email novo usuario: " + firebaseUser.user.email);
-    }).catchError((erro){
-      print("erro " + erro.toString());
-    }
-    );*/
-
-    //auth.signOut();
-
-  /*  auth.signInWithEmailAndPassword(
-        email: email,
-        password: senha
-    ).then((firebaseUser){
-      print("Logar usuario: " + firebaseUser.user.email);
-    }).catchError((erro){
-      print("Logar usuario erro " + erro.toString());
-    });
-*/
-
-    /*FirebaseUser usuarioAtual = await auth.currentUser();
-
-    if(usuarioAtual != null){//logado
-      print("usuario atual email: " + usuarioAtual.email);
-    }else{//deslogado
-      print("ta deslogado");
-    }*/
-
-  }*/
-
-
   validarCampos(){
     String email = _controllerEmail.text;
     String senha = _controllerSenha.text;
@@ -94,8 +51,6 @@ class _loginState extends State<login> {
 
   @override
   void initState() {
-   /* FirebaseAuth auth = FirebaseAuth.instance;
-    auth.signOut();*/
     _estaLogado();
     // TODO: implement initState
     super.initState();

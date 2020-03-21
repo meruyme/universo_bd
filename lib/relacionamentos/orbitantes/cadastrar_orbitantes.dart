@@ -22,7 +22,7 @@ class _cadastrar_orbitantesState extends State<cadastrar_orbitantes> {
 
   Planeta selectedPlanet, valuePlanet;
   SateliteNatural selectedSatellite, valueSatellite;
-  String hintPlaneta = "Planeta";
+  String hintPlaneta = "Planetas";
   String hintSatelite = "Satélites Naturais";
   String hintEstrela = "Estrelas";
   Estrela selectedStar, valueStar;
