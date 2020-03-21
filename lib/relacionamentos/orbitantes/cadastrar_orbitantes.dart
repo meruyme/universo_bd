@@ -35,6 +35,11 @@ class _cadastrar_orbitantesState extends State<cadastrar_orbitantes> {
 
 
   void validarCampos() async{
+    CollectionReference col = Firestore.instance.collection("orbitantes");
+    Query checar_estrela = await col.where("idEstrela", isEqualTo: selectedStar.id);
+    Query checar_planeta = await checar_estrela.where("idPlaneta", isEqualTo: selectedPlanet.id);
+    QuerySnapshot checar_satelite = await checar_planeta.where("idSatelite", isEqualTo: selectedSatellite.id).getDocuments();
+
     if((hintSatelite == "Satélites Naturais" && hintEstrela == "Estrelas") ||
         (hintEstrela == "Estrelas" && hintPlaneta == "Planetas") ||
         (hintPlaneta == "Planetas" && hintSatelite == "Satélites Naturais")){
@@ -44,11 +49,15 @@ class _cadastrar_orbitantesState extends State<cadastrar_orbitantes> {
         gravity: ToastGravity.BOTTOM,
       );
     }
-
+    else if(checar_satelite.documents.length != 0){
+      Fluttertoast.showToast(
+        msg: "Esse relacionamento já existe.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
     else{
       Orbitantes orbitantes = Orbitantes();
-      int teste;
-      print(teste);
       orbitantes.planeta = selectedPlanet;
       orbitantes.estrela = selectedStar;
       orbitantes.sateliteNatural = selectedSatellite;

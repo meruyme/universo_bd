@@ -28,9 +28,21 @@ class _editar_sistema_planetaState extends State<editar_sistema_planeta> {
   double _diferencaCards=10;
 
   void validarCampos() async{
+    CollectionReference col = Firestore.instance.collection("sistemas_planetas");
+    Query checar_planeta = await col.where("idPlaneta", isEqualTo: selectedPlanet.id);
+    QuerySnapshot checar_sistema = await checar_planeta.where("idSistema", isEqualTo: selectedSystem.id).getDocuments();
+
     if(hintSistema == "Sistemas Planetários" || hintPlaneta == "Planetas"){
       Fluttertoast.showToast(
         msg: "Selecione um sistema e um planeta.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+    else if(checar_sistema.documents.length != 0 &&
+        (selectedPlanet.id != widget.sistemaPlaneta.planeta.id || selectedSystem.id != widget.sistemaPlaneta.sistemaPlanetario.id)){
+      Fluttertoast.showToast(
+        msg: "Esse relacionamento já existe.",
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
       );
