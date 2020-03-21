@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:universo_bd/relations_icons_icons.dart';
 import '../custom_icons_icons.dart';
 
@@ -149,6 +150,11 @@ class _navigation_drawerState extends State<navigation_drawer> {
               onTap: () {
                 FirebaseAuth auth = FirebaseAuth.instance;
                 auth.signOut();
+                Fluttertoast.showToast(
+                  msg: "Usuário deslogado com sucesso!",
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.BOTTOM,
+                );
                 Navigator.pushNamedAndRemoveUntil(context,
                     "/login",
                         (_) => false
