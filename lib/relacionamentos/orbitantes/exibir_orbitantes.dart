@@ -22,7 +22,6 @@ class _exibir_orbitantesState extends State<exibir_orbitantes> {
   @override
 
   confirmarDeletar(){
-    // set up the buttons
     Widget cancelButton = FlatButton(
       textColor: Colors.deepPurpleAccent,
       child: Text("Cancelar"),
