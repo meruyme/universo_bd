@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:universo_bd/classes/Estrela.dart';
 import 'package:universo_bd/classes/Planeta.dart';
 import 'package:universo_bd/classes/SateliteNatural.dart';
@@ -33,6 +34,16 @@ class Orbitantes{
 
   set estrela(Estrela value) {
     _estrela = value;
+  }
+
+  void deletarOrbitantes(){
+    Firestore db = Firestore.instance;
+    db.collection("orbitantes").document(id).delete();
+    Fluttertoast.showToast(
+      msg: "Relacionamento deletado com sucesso!",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+    );
   }
 
   void adicionarOrbitantes(){
