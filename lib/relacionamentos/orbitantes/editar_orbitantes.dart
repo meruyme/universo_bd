@@ -65,11 +65,19 @@ class _editar_orbitantesState extends State<editar_orbitantes> {
       );
     }
     else{
-      Orbitantes orbitantes = Orbitantes();
-      orbitantes.planeta = selectedPlanet;
-      orbitantes.estrela = selectedStar;
-      orbitantes.sateliteNatural = selectedSatellite;
-      orbitantes.editarOrbitantes();
+      if(selectedSatellite.id == "-"){
+        selectedSatellite.nome = "—";
+      }
+      if(selectedStar.id == "-"){
+        selectedStar.nome = "—";
+      }
+      if(selectedPlanet.id == "-"){
+        selectedPlanet.nome = "—";
+      }
+      widget.orbitante.planeta = selectedPlanet;
+      widget.orbitante.estrela = selectedStar;
+      widget.orbitante.sateliteNatural = selectedSatellite;
+      widget.orbitante.editarOrbitantes();
       Fluttertoast.showToast(
         msg: "Orbitantes editados com sucesso!",
         toastLength: Toast.LENGTH_LONG,
@@ -111,6 +119,16 @@ class _editar_orbitantesState extends State<editar_orbitantes> {
     auxS.nome = "Satélites Naturais";
     auxS.id = "-";
     selectedSatellite = auxS;
+
+    if(widget.orbitante.estrela.id != "-"){
+      hintEstrela = widget.orbitante.estrela.nome;
+    }
+    if(widget.orbitante.planeta.id != "-"){
+      hintPlaneta = widget.orbitante.planeta.nome;
+    }
+    if(widget.orbitante.sateliteNatural.id != "-"){
+      hintSatelite = widget.orbitante.sateliteNatural.nome;
+    }
   }
 
   Widget build(BuildContext context) {
@@ -125,7 +143,7 @@ class _editar_orbitantesState extends State<editar_orbitantes> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-                "Relacionar Orbitantes"
+                "Editar Orbitantes"
             ),
           ),
           body: SingleChildScrollView(
