@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universo_bd/arguments/ArgumentsSatelite.dart';
 import 'package:universo_bd/classes/SateliteNatural.dart';
+import 'package:universo_bd/search_delegates/SearchDelegateSatelite.dart';
 import 'package:universo_bd/widgets/custom_card/custom_card.dart';
 import 'package:universo_bd/custom_icons_icons.dart';
 import 'package:universo_bd/widgets/navigation_drawer.dart';
@@ -16,7 +17,44 @@ class listar_satelite_natural extends StatefulWidget {
 class _listar_satelite_naturalState extends State<listar_satelite_natural> {
 
   Firestore db = Firestore.instance;
+  String query = "";
+  List<SateliteNatural> listaSatelites = List();
 
+  List<Widget> actionsAppBar(){
+    if(query == ""){
+      setState(() {});
+      return [IconButton(
+        icon: Icon(Icons.search),
+        onPressed: () async{
+          final String selected = await showSearch(context: context, delegate: SearchDelegateSatelite(listaSatelites));
+          setState(() {
+            query = selected;
+          });
+        },
+      )];
+    }
+    else{
+      setState(() {});
+      return [IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: (){
+          setState(() {
+            query = "";
+          });
+        },
+      ),
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () async{
+            final String selected = await showSearch(context: context, delegate: SearchDelegateSatelite(listaSatelites));
+            setState(() {
+              query = selected;
+            });
+          },
+        ),
+      ];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +78,7 @@ class _listar_satelite_naturalState extends State<listar_satelite_natural> {
         appBar: AppBar(
           elevation: 0,
           title: Text("Satélites Naturais"),
+          actions: actionsAppBar(),
         ),
         body: Container(
             child: StreamBuilder<QuerySnapshot>(
@@ -67,7 +106,7 @@ class _listar_satelite_naturalState extends State<listar_satelite_natural> {
                 }
                 else{
                   final satelitesDB = snapshot.data.documents;
-                  List<SateliteNatural> listaSatelites = List();
+                  listaSatelites = List();
 
                   for(DocumentSnapshot item in satelitesDB){
                     var dados = item.data;
@@ -81,13 +120,17 @@ class _listar_satelite_naturalState extends State<listar_satelite_natural> {
                     listaSatelites.add(sateliteNatural);
                   }
 
+                  List<SateliteNatural> satelitesProcurados = query.isEmpty ? listaSatelites :
+                  listaSatelites.where((check) => check.nome.toLowerCase().contains(query.toLowerCase())).toList();
+
+
                   return ListView.builder(
                       padding: EdgeInsets.only(top: 16, bottom: 8),
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      itemCount: snapshot.data.documents.length,
+                      itemCount: satelitesProcurados.length,
                       itemBuilder: (context, position){
-                        SateliteNatural sateliteNatural = listaSatelites[position];
+                        SateliteNatural sateliteNatural = satelitesProcurados[position];
                         return GestureDetector(
                           onTap: (){
                             Navigator.pushNamed(context, "/exibir_satelite_natural", arguments: ArgumentsSatelite(sateliteNatural, "exibir_satelite_natural"));

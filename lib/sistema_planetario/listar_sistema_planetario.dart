@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:universo_bd/arguments/ArgumentsSistema.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
 import 'package:universo_bd/classes/SistemaPlanetario.dart';
+import 'package:universo_bd/search_delegates/SearchDelegateSistema.dart';
 import 'package:universo_bd/widgets/custom_card/custom_card.dart';
 import 'package:universo_bd/custom_icons_icons.dart';
 import 'package:universo_bd/widgets/navigation_drawer.dart';
@@ -18,8 +19,44 @@ class listar_sistema_planetario extends StatefulWidget {
 class _listar_sistema_planetarioState extends State<listar_sistema_planetario> {
 
   Firestore db = Firestore.instance;
+  String query = "";
+  List<SistemaPlanetario> listaSistemas = List();
 
-
+  List<Widget> actionsAppBar(){
+    if(query == ""){
+      setState(() {});
+      return [IconButton(
+        icon: Icon(Icons.search),
+        onPressed: () async{
+          final String selected = await showSearch(context: context, delegate: SearchDelegateSistema(listaSistemas));
+          setState(() {
+            query = selected;
+          });
+        },
+      )];
+    }
+    else{
+      setState(() {});
+      return [IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: (){
+          setState(() {
+            query = "";
+          });
+        },
+      ),
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () async{
+            final String selected = await showSearch(context: context, delegate: SearchDelegateSistema(listaSistemas));
+            setState(() {
+              query = selected;
+            });
+          },
+        ),
+      ];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +80,7 @@ class _listar_sistema_planetarioState extends State<listar_sistema_planetario> {
         appBar: AppBar(
           elevation: 0,
           title: Text("Sistemas Planetários"),
+          actions: actionsAppBar(),
         ),
         body: Container(
             child: StreamBuilder<QuerySnapshot>(
@@ -70,7 +108,7 @@ class _listar_sistema_planetarioState extends State<listar_sistema_planetario> {
                 }
                 else{
                   final sistemasDB = snapshot.data.documents;
-                  List<SistemaPlanetario> listaSistemas = List();
+                  listaSistemas = List();
 
                   for(DocumentSnapshot item in sistemasDB){
                     var dados = item.data;
@@ -86,13 +124,16 @@ class _listar_sistema_planetarioState extends State<listar_sistema_planetario> {
                     listaSistemas.add(sistemaPlanetario);
                   }
 
+                  List<SistemaPlanetario> sistemasProcurados = query.isEmpty ? listaSistemas :
+                  listaSistemas.where((check) => check.nome.toLowerCase().contains(query.toLowerCase())).toList();
+
                   return ListView.builder(
                       padding: EdgeInsets.only(top: 16, bottom: 8),
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      itemCount: snapshot.data.documents.length,
+                      itemCount: sistemasProcurados.length,
                       itemBuilder: (context, position){
-                        SistemaPlanetario sistemaPlanetario = listaSistemas[position];
+                        SistemaPlanetario sistemaPlanetario = sistemasProcurados[position];
                         return StreamBuilder<DocumentSnapshot>(
                           stream: db.collection("galaxias").document(sistemaPlanetario.galaxia.id).snapshots(),
                           builder: (context, snapshotGalaxy){

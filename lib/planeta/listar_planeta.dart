@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universo_bd/arguments/ArgumentsPlaneta.dart';
 import 'package:universo_bd/classes/Planeta.dart';
+import 'package:universo_bd/search_delegates/SearchDelegatePlaneta.dart';
 import 'package:universo_bd/widgets/custom_card/custom_card.dart';
 import 'package:universo_bd/custom_icons_icons.dart';
 import 'package:universo_bd/widgets/navigation_drawer.dart';
@@ -16,6 +17,45 @@ class listar_planeta extends StatefulWidget {
 class _listar_planetaState extends State<listar_planeta> {
 
   Firestore db = Firestore.instance;
+  List<Planeta> listaPlanetas = List();
+  String query = "";
+
+  List<Widget> actionsAppBar(){
+    if(query == ""){
+      setState(() {});
+      return [IconButton(
+        icon: Icon(Icons.search),
+        onPressed: () async{
+          final String selected = await showSearch(context: context, delegate: SearchDelegatePlaneta(listaPlanetas));
+          setState(() {
+            query = selected;
+          });
+        },
+      )];
+    }
+    else{
+      setState(() {});
+      return [IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: (){
+            setState(() {
+              query = "";
+            });
+          },
+        ),
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () async{
+            final String selected = await showSearch(context: context, delegate: SearchDelegatePlaneta(listaPlanetas));
+            setState(() {
+              query = selected;
+            });
+          },
+        ),
+      ];
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +79,7 @@ class _listar_planetaState extends State<listar_planeta> {
         appBar: AppBar(
           elevation: 0,
           title: Text("Planetas"),
+          actions: actionsAppBar()
         ),
         body: Container(
           child: StreamBuilder<QuerySnapshot>(
@@ -66,7 +107,7 @@ class _listar_planetaState extends State<listar_planeta> {
               }
               else{
                 final planetasDB = snapshot.data.documents;
-                List<Planeta> listaPlanetas = List();
+                listaPlanetas = List();
 
                 for(DocumentSnapshot item in planetasDB){
                   var dados = item.data;
@@ -81,13 +122,16 @@ class _listar_planetaState extends State<listar_planeta> {
                   listaPlanetas.add(planeta);
                 }
 
+                List<Planeta> planetasProcurados = query.isEmpty ? listaPlanetas :
+                    listaPlanetas.where((check) => check.nome.toLowerCase().contains(query.toLowerCase())).toList();
+
                 return ListView.builder(
                     padding: EdgeInsets.only(top: 16, bottom: 8),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    itemCount: snapshot.data.documents.length,
+                    itemCount: planetasProcurados.length,
                     itemBuilder: (context, position){
-                      Planeta planeta = listaPlanetas[position];
+                      Planeta planeta = planetasProcurados[position];
                       return GestureDetector(
                         onTap: (){
                           Navigator.pushNamed(context, "/exibir_planeta", arguments: ArgumentsPlaneta(planeta, "exibir_planeta"));

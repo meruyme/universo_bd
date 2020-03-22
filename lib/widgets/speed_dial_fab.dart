@@ -27,7 +27,6 @@ class _speed_dial_fabState extends State<speed_dial_fab> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
     widget.scrollController = ScrollController()..addListener((){
       setDialVisible(widget.scrollController.position.userScrollDirection == ScrollDirection.forward);
     });
@@ -65,7 +64,6 @@ class _speed_dial_fabState extends State<speed_dial_fab> {
                 labelBackgroundColor: Color.fromRGBO(64, 75, 96, 0.9),
                 onTap: (){
                   Navigator.pushNamed(context, "/cadastrar_estrela", arguments: "Estrela binária");
-
                 }
             ),
             SpeedDialChild(

@@ -5,6 +5,7 @@ import 'package:universo_bd/arguments/ArgumentsEstrela.dart';
 import 'package:universo_bd/arguments/ArgumentsGiganteVermelha.dart';
 import 'package:universo_bd/classes/Estrela.dart';
 import 'package:universo_bd/classes/GiganteVermelha.dart';
+import 'package:universo_bd/search_delegates/SearchDelegateEstrela.dart';
 import 'package:universo_bd/widgets/custom_card/custom_card.dart';
 import 'package:universo_bd/custom_icons_icons.dart';
 import 'package:universo_bd/widgets/navigation_drawer.dart';
@@ -19,9 +20,45 @@ class listar_estrela extends StatefulWidget {
 class _listar_estrelaState extends State<listar_estrela> {
 
   Firestore db = Firestore.instance;
-  final key = new GlobalKey<ScaffoldState>();
   ScrollController scrollController;
+  List<Estrela> listaEstrelas = List();
+  String query = "";
 
+  List<Widget> actionsAppBar(){
+    if(query == ""){
+      setState(() {});
+      return [IconButton(
+        icon: Icon(Icons.search),
+        onPressed: () async{
+          final String selected = await showSearch(context: context, delegate: SearchDelegateEstrela(listaEstrelas));
+          setState(() {
+            query = selected;
+          });
+        },
+      )];
+    }
+    else{
+      setState(() {});
+      return [IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: (){
+          setState(() {
+            query = "";
+          });
+        },
+      ),
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () async{
+            final String selected = await showSearch(context: context, delegate: SearchDelegateEstrela(listaEstrelas));
+            setState(() {
+              query = selected;
+            });
+          },
+        ),
+      ];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +71,13 @@ class _listar_estrelaState extends State<listar_estrela> {
           )
       ),
       child: Scaffold(
-        key: key,
         drawer: navigation_drawer(tela: "listar_estrela"),
         floatingActionButton: speed_dial_fab(scrollController: scrollController),
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           elevation: 0,
           title: Text("Estrelas"),
+          actions: actionsAppBar()
         ),
         body: Container(
             child: StreamBuilder<QuerySnapshot>(
@@ -68,7 +105,7 @@ class _listar_estrelaState extends State<listar_estrela> {
                 }
                 else{
                   final estrelasDB = snapshot.data.documents;
-                  List<Estrela> listaEstrelas = List();
+                  listaEstrelas = List();
 
                   for(DocumentSnapshot item in estrelasDB){
                     var dados = item.data;
@@ -96,17 +133,21 @@ class _listar_estrelaState extends State<listar_estrela> {
                     }
                   }
 
+                  List<Estrela> estrelasProcuradas = query.isEmpty ? listaEstrelas :
+                  listaEstrelas.where((check) => check.nome.toLowerCase().contains(query.toLowerCase())).toList();
+
                   return ListView.builder(
                       controller: scrollController,
                       padding: EdgeInsets.only(top: 16, bottom: 8),
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      itemCount: snapshot.data.documents.length,
+                      itemCount: estrelasProcuradas.length,
                       itemBuilder: (context, position){
-                        Estrela estrela = listaEstrelas[position];
+                        Estrela estrela = estrelasProcuradas[position];
 
                         return GestureDetector(
                           onTap: (){
+                            query = "";
                             if(estrela.tipo != "Gigante Vermelha"){
                               Navigator.pushNamed(context, "/exibir_estrela", arguments: ArgumentsEstrela(estrela, "exibir_estrela"));
                             }

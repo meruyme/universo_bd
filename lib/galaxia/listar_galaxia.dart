@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universo_bd/classes/Galaxia.dart';
+import 'package:universo_bd/search_delegates/SearchDelegateGalaxia.dart';
 import 'package:universo_bd/widgets/custom_card/custom_card.dart';
 import 'package:universo_bd/custom_icons_icons.dart';
 import 'package:universo_bd/widgets/navigation_drawer.dart';
@@ -15,6 +16,44 @@ class listar_galaxia extends StatefulWidget {
 class _listar_galaxiaState extends State<listar_galaxia> {
 
   Firestore db = Firestore.instance;
+  String query = "";
+  List<Galaxia> listaGalaxias = List();
+
+  List<Widget> actionsAppBar(){
+    if(query == ""){
+      setState(() {});
+      return [IconButton(
+        icon: Icon(Icons.search),
+        onPressed: () async{
+          final String selected = await showSearch(context: context, delegate: SearchDelegateGalaxia(listaGalaxias));
+          setState(() {
+            query = selected;
+          });
+        },
+      )];
+    }
+    else{
+      setState(() {});
+      return [IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: (){
+          setState(() {
+            query = "";
+          });
+        },
+      ),
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () async{
+            final String selected = await showSearch(context: context, delegate: SearchDelegateGalaxia(listaGalaxias));
+            setState(() {
+              query = selected;
+            });
+          },
+        ),
+      ];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +77,7 @@ class _listar_galaxiaState extends State<listar_galaxia> {
         appBar: AppBar(
           elevation: 0,
           title: Text("Galáxias"),
+          actions: actionsAppBar(),
         ),
         body: Container(
             child: StreamBuilder<QuerySnapshot>(
@@ -65,7 +105,7 @@ class _listar_galaxiaState extends State<listar_galaxia> {
                 }
                 else{
                   final galaxiasDB = snapshot.data.documents;
-                  List<Galaxia> listaGalaxias = List();
+                  listaGalaxias = List();
 
                   for(DocumentSnapshot item in galaxiasDB){
                     var dados = item.data;
@@ -77,13 +117,16 @@ class _listar_galaxiaState extends State<listar_galaxia> {
                     listaGalaxias.add(galaxia);
                   }
 
+                  List<Galaxia> galaxiasProcuradas = query.isEmpty ? listaGalaxias :
+                  listaGalaxias.where((check) => check.nome.toLowerCase().contains(query.toLowerCase())).toList();
+
                   return ListView.builder(
                       padding: EdgeInsets.only(top: 16, bottom: 8),
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      itemCount: snapshot.data.documents.length,
+                      itemCount: galaxiasProcuradas.length,
                       itemBuilder: (context, position){
-                        Galaxia galaxia = listaGalaxias[position];
+                        Galaxia galaxia = galaxiasProcuradas[position];
 
                         return GestureDetector(
                           onTap: (){
