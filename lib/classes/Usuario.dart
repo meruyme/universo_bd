@@ -40,7 +40,7 @@ class Usuario{
         gravity: ToastGravity.BOTTOM,
       );
       Navigator.pushNamedAndRemoveUntil(context,
-          "/listar_planeta",
+          "/home",
               (_) => false
       );
     }).catchError((error){
@@ -79,7 +79,7 @@ class Usuario{
         gravity: ToastGravity.BOTTOM,
       );
       Navigator.pushNamedAndRemoveUntil(context,
-          "/listar_planeta",
+          "/home",
               (_) => false
       );
     }).catchError((error){
