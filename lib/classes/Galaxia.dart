@@ -39,6 +39,16 @@ class Galaxia{
     db.collection("galaxias").document(id).delete();
     await db.collection("sistemas_planetarios").where("idGalaxia", isEqualTo: id).getDocuments().then((snapshot){
       for(DocumentSnapshot item in snapshot.documents){
+         db.collection("sistemas_planetas").where("idSistema", isEqualTo: item.documentID).getDocuments().then((snapshotSystem){
+            for(DocumentSnapshot itemSystem in snapshotSystem.documents){
+              db.collection("sistemas_planetas").document(itemSystem.documentID).delete();
+            }
+          });
+         db.collection("sistemas_estrelas").where("idSistema", isEqualTo: item.documentID).getDocuments().then((snapshotSystem){
+           for(DocumentSnapshot itemSystem in snapshotSystem.documents){
+             db.collection("sistemas_estrelas").document(itemSystem.documentID).delete();
+           }
+         });
         db.collection("sistemas_planetarios").document(item.documentID).delete();
       }
     });
