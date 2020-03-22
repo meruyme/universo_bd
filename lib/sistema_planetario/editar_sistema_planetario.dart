@@ -95,8 +95,6 @@ class _editar_sistema_planetarioState extends State<editar_sistema_planetario> {
           body: SingleChildScrollView(
             padding: EdgeInsets.all(20),
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(top:32,bottom: _diferencaCards),
@@ -120,10 +118,11 @@ class _editar_sistema_planetarioState extends State<editar_sistema_planetario> {
                       child:Container(
                         height: 55,
                         child:  custom_text_field(
-                          label: "Idade (bilhões de anos)",
+                          label: "Idade",
                           controller: _controllerIdade,
                           textInputType: TextInputType.number,
                           isPassword: false,
+                          suffix: "bilhões de anos",
                         ),
                       )
                   ),

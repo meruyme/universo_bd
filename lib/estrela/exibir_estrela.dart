@@ -158,7 +158,7 @@ class _exibir_estrelaState extends State<exibir_estrela> {
                   stream: db.collection("sistemas_estrelas").where("idEstrela", isEqualTo: widget.arguments.estrela.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;
@@ -233,7 +233,7 @@ class _exibir_estrelaState extends State<exibir_estrela> {
                   stream: db.collection("orbitantes").where("idEstrela", isEqualTo: widget.arguments.estrela.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;
@@ -307,7 +307,7 @@ class _exibir_estrelaState extends State<exibir_estrela> {
                   stream: db.collection("orbitantes").where("idEstrela", isEqualTo: widget.arguments.estrela.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;

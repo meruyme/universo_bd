@@ -95,10 +95,11 @@ class _cadastrar_galaxiaState extends State<cadastrar_galaxia> {
                       child:Container(
                         height: 55,
                         child: custom_text_field(
-                          label: "Distância da Terra (anos-luz)",
+                          label: "Distância da Terra",
                           controller: _controllerDistancia,
                           textInputType: TextInputType.number,
                           isPassword: false,
+                          suffix: "anos-luz",
                         ),
                       )
                   ),

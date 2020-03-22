@@ -174,7 +174,7 @@ class _exibir_gigante_vermelhaState extends State<exibir_gigante_vermelha> {
                   stream: db.collection("sistemas_estrelas").where("idEstrela", isEqualTo: widget.arguments.giganteVermelha.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;
@@ -249,7 +249,7 @@ class _exibir_gigante_vermelhaState extends State<exibir_gigante_vermelha> {
                   stream: db.collection("orbitantes").where("idEstrela", isEqualTo: widget.arguments.giganteVermelha.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;
@@ -323,7 +323,7 @@ class _exibir_gigante_vermelhaState extends State<exibir_gigante_vermelha> {
                   stream: db.collection("orbitantes").where("idEstrela", isEqualTo: widget.arguments.giganteVermelha.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;

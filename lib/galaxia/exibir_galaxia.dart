@@ -131,10 +131,10 @@ class _exibir_galaxiaState extends State<exibir_galaxia> {
                   diferencaCards: _diferencaCards,
                 ),
                 StreamBuilder<QuerySnapshot>(
-                  stream: db.collection("sistemas_planetarios").where("idGalaxia", isEqualTo: widget.galaxia.id).orderBy("nome").snapshots(),
+                  stream: db.collection("sistemas_planetarios").where("idGalaxia", isEqualTo: widget.galaxia.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
 
@@ -188,7 +188,6 @@ class _exibir_galaxiaState extends State<exibir_galaxia> {
                               ],
                             ),
                           )
-
                       );
                     }
                   },
