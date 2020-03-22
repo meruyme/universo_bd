@@ -50,6 +50,15 @@ flutter:
   uses-material-design: true
 
   fonts:
+    - family:  HelpIcon
+      fonts:
+        - asset: fonts/HelpIcon.ttf
+    - family: HomeDrawerIcon
+      fonts:
+        - asset: fonts/HomeDrawerIcon.ttf
+    - family: HomeIcons
+      fonts:
+        - asset: fonts/HomeIcons.ttf
     - family: RelationsIcons
       fonts:
         - asset: fonts/RelationsIcons.ttf
@@ -79,6 +88,7 @@ flutter:
     - images/fundo_telas6.jpg
     - images/astronaut.png
     - images/210.jpg
+    - images/telescope.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

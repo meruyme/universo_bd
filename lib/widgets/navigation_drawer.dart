@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:universo_bd/relations_icons_icons.dart';
 import '../custom_icons_icons.dart';
+import '../home_drawer_icon_icons.dart';
 
 class navigation_drawer extends StatefulWidget {
 
@@ -137,6 +138,23 @@ class _navigation_drawerState extends State<navigation_drawer> {
               },
             ),
             Divider(),
+            ListTile(
+              leading: Icon(HomeDrawerIcon.home_drawer, color: Color.fromRGBO(64, 75, 96, 0.9),),
+              title: Text(
+                'Início',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(64, 75, 96, 0.9)
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+                if(widget.tela != "home"){
+                  Navigator.of(context).pushNamed("/home");
+                }
+              },
+            ),
             ListTile(
               leading: Icon(Icons.exit_to_app, color: Color.fromRGBO(64, 75, 96, 0.9),),
               title: Text(

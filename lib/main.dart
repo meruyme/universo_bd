@@ -38,6 +38,8 @@ import 'package:universo_bd/sistema_planetario/editar_sistema_planetario.dart';
 import 'package:universo_bd/sistema_planetario/exibir_sistema_planetario.dart';
 import 'package:universo_bd/sistema_planetario/listar_sistema_planetario.dart';
 
+import 'home.dart';
+
 void main(){
 
   runApp(
@@ -45,6 +47,8 @@ void main(){
         initialRoute: "/",
         routes: {
           "/login" : (context) => login(),
+          "/home" : (context) => home(),
+          //"/dialog_home" : (context) => dialog_home(),
           "/cadastrar_usuario" : (context) => cadastrar_usuario(),
           "/cadastrar_planeta" : (context) => cadastrar_planeta(),
           "/editar_planeta" : (context) => editar_planeta(planeta: ModalRoute.of(context).settings.arguments),

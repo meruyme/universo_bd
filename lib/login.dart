@@ -41,7 +41,7 @@ class _loginState extends State<login> {
 
     if(usuarioLogado != null) {
       Navigator.pushNamedAndRemoveUntil(context,
-          "/listar_planeta",
+          "/home",
               (_) => false
       );
     }
