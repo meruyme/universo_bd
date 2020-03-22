@@ -182,7 +182,7 @@ class _exibir_planetaState extends State<exibir_planeta> {
                   stream: db.collection("sistemas_planetas").where("idPlaneta", isEqualTo: widget.arguments.planeta.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;
@@ -257,7 +257,7 @@ class _exibir_planetaState extends State<exibir_planeta> {
                   stream: db.collection("orbitantes").where("idPlaneta", isEqualTo: widget.arguments.planeta.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;
@@ -331,7 +331,7 @@ class _exibir_planetaState extends State<exibir_planeta> {
                   stream: db.collection("orbitantes").where("idPlaneta", isEqualTo: widget.arguments.planeta.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;

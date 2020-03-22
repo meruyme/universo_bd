@@ -159,7 +159,7 @@ class _exibir_sistema_planetarioState extends State<exibir_sistema_planetario> {
                  stream: db.collection("sistemas_planetas").where("idSistema", isEqualTo: widget.arguments.sistemaPlanetario.id).snapshots(),
                  builder: (context, snapshot){
                    if(!snapshot.hasData){
-                     return Text("Loading...");
+                     return Text("");
                    }
                    else{
                      final relacoesDB = snapshot.data.documents;
@@ -234,7 +234,7 @@ class _exibir_sistema_planetarioState extends State<exibir_sistema_planetario> {
                   stream: db.collection("sistemas_estrelas").where("idSistema", isEqualTo: widget.arguments.sistemaPlanetario.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;

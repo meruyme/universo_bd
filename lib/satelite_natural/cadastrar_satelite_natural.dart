@@ -112,19 +112,21 @@ class _cadastrar_satelite_naturalState extends State<cadastrar_satelite_natural>
               Padding(
                 padding: EdgeInsetsDirectional.only(bottom: 24),
                 child: custom_text_field(
-                  label: "Tamanho (km)",
+                  label: "Tamanho",
                   controller: _tamanhoController,
                   textInputType: TextInputType.number,
                   isPassword: false,
+                  suffix: "km",
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.only(bottom: 24),
                 child: custom_text_field(
-                  label: "Massa (kg)",
+                  label: "Massa",
                   controller: _massaController,
                   textInputType: TextInputType.number,
                   isPassword: false,
+                  suffix: "kg",
                 ),
               ),
               Padding(

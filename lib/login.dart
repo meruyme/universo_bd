@@ -50,11 +50,8 @@ class _loginState extends State<login> {
   @override
   void initState() {
     _estaLogado();
-    // TODO: implement initState
     super.initState();
   }
-
-  final key = new GlobalKey<ScaffoldState>();
 
 
   @override
@@ -68,7 +65,6 @@ class _loginState extends State<login> {
             )
         ),
         child: Scaffold(
-          key: key,
           backgroundColor: Colors.transparent,
           body: Center(
             child: SingleChildScrollView(

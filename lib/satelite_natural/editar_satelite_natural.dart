@@ -138,10 +138,11 @@ class _editar_satelite_naturalState extends State<editar_satelite_natural> {
                       child:Container(
                         height: 55,
                         child:  custom_text_field(
-                          label: "Tamanho (km)",
+                          label: "Tamanho",
                           controller: _controllerTamanho,
                           textInputType: TextInputType.number,
                           isPassword: false,
+                          suffix: "km",
                         ),
                       )
                   ),
@@ -153,10 +154,11 @@ class _editar_satelite_naturalState extends State<editar_satelite_natural> {
                       child:Container(
                         height: 55,
                         child: custom_text_field(
-                          label: "Massa (kg)",
+                          label: "Massa",
                           controller: _controllerMassa,
                           textInputType: TextInputType.number,
                           isPassword: false,
+                          suffix: "kg",
                         ),
                       )
                   ),

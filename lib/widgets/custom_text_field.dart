@@ -6,8 +6,9 @@ class custom_text_field extends StatefulWidget {
   TextEditingController controller = TextEditingController();
   TextInputType textInputType;
   bool isPassword;
+  String suffix = "";
 
-  custom_text_field({this.label, this.controller, this.textInputType, this.isPassword});
+  custom_text_field({this.label, this.controller, this.textInputType, this.isPassword, this.suffix});
 
   @override
   _custom_text_fieldState createState() => _custom_text_fieldState();
@@ -27,7 +28,7 @@ class _custom_text_fieldState extends State<custom_text_field> {
           obscureText: widget.isPassword,
           decoration: new InputDecoration(
             labelText: widget.label,
-
+            suffixText: widget.suffix,
             //filled: true,
             fillColor: Colors.white,
 

@@ -115,28 +115,31 @@ class _cadastrar_planetaState extends State<cadastrar_planeta> {
                 Padding(
                   padding: EdgeInsetsDirectional.only(bottom: 24),
                   child: custom_text_field(
-                    label: "Tamanho (km)",
+                    label: "Tamanho",
                     controller: _tamanhoController,
                     textInputType: TextInputType.number,
                     isPassword: false,
+                    suffix: "km",
                   ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.only(bottom: 24),
                   child: custom_text_field(
-                    label: "Massa (kg)",
+                    label: "Massa",
                     controller: _massaController,
                     textInputType: TextInputType.number,
                     isPassword: false,
+                    suffix: "kg",
                   ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.only(bottom: 24),
                   child: custom_text_field(
-                    label: "Velocidade de rotação (km/h)",
+                    label: "Velocidade de rotação",
                     controller: _velocidadeController,
                     textInputType: TextInputType.number,
                     isPassword: false,
+                    suffix: "km/h",
                   ),
                 ),
                 Padding(
@@ -315,147 +318,6 @@ class _cadastrar_planetaState extends State<cadastrar_planeta> {
                       ],
                     )
                 ),
-                /*Padding(
-                    padding: EdgeInsetsDirectional.only(bottom: 16),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Expanded(
-                            child: Padding(
-                                padding: EdgeInsetsDirectional.only(end: 16),
-                                child: Container(
-                                  color: Color.fromRGBO(64, 75, 96, 0.9),
-                                  child: ExpansionTile(
-                                    title: Text("Componentes gasosos", style: TextStyle(color: Colors.white)),
-                                    children: <Widget>[
-                                      ListView.builder(
-                                        shrinkWrap: true,
-                                        controller: scrollController,
-                                        itemCount: componentes.length,
-                                        itemBuilder: (context, position){
-                                          List aux = componentes[position].split("-");
-                                          return Container(
-                                            color: selectedIndex != -1 && selectedIndex == position ? Color.fromRGBO(45, 52, 67, 0.9): Colors.transparent,
-                                            child: GestureDetector(
-                                                onTap: (){
-                                                  setState(() {
-                                                    if(selectedIndex != position){
-                                                      selectedIndex = position;
-                                                    }
-                                                    else{
-                                                      selectedIndex = -1;
-                                                    }
-                                                  });
-                                                },
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional.only(start: 10, bottom: 10, end: 10, top: 5),
-                                                  child: Text("Gás: " + aux[0] +
-                                                      " - Porcentagem: " + aux[1] + "%",
-                                                      style: TextStyle(fontSize: 16)),
-                                                )
-                                            ),
-                                          );
-
-
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                )
-                            )
-                        ),
-                        Column(
-
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsetsDirectional.only(bottom: 10),
-                              child: ButtonTheme(
-                                buttonColor: Colors.deepPurpleAccent,
-                                minWidth: 20,
-                                height: 20,
-                                child: RaisedButton(
-                                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  child: Icon(Icons.add, color: Colors.white,),
-                                  onPressed: (){
-                                    showDialog(
-                                        context: context,
-                                        child: SimpleDialog(
-                                          title: Text("Cadastrar componentes"),
-                                          children: <Widget>[
-                                            SingleChildScrollView(
-                                              padding: EdgeInsets.all(20),
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                                children: <Widget>[
-                                                  TextField(
-                                                    decoration: InputDecoration(
-                                                        labelText: "Nome do componente"
-                                                    ),
-                                                    controller: _nomeComponenteController,
-                                                    keyboardType: TextInputType.text,
-                                                  ),
-                                                  TextField(
-                                                    decoration: InputDecoration(
-                                                        labelText: "Porcentagem (%)"
-                                                    ),
-                                                    controller: _porcentagemComponenteController,
-                                                    keyboardType: TextInputType.number,
-                                                  ),
-                                                  RaisedButton(
-                                                    child: Text("Adicionar"),
-                                                    onPressed: (){
-                                                      componentes.add(_nomeComponenteController.text+"-"+_porcentagemComponenteController.text);
-                                                      _nomeComponenteController.clear();
-                                                      _porcentagemComponenteController.clear();
-                                                      setState(() {});
-                                                      Navigator.of(context, rootNavigator: true).pop();
-                                                    },
-                                                  )
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        )
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            ButtonTheme(
-                              buttonColor: Colors.deepPurpleAccent,
-                              minWidth: 20,
-                              height: 20,
-                              child: RaisedButton(
-                                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                child: Icon(Icons.remove, color: Colors.white,),
-                                onPressed: (){
-                                  setState(() {
-                                    if(selectedIndex != -1){
-                                      componentes.removeAt(selectedIndex);
-                                      selectedIndex = -1;
-                                      Fluttertoast.showToast(
-                                        msg: "Componente deletado com sucesso!",
-                                        toastLength: Toast.LENGTH_LONG,
-                                        gravity: ToastGravity.BOTTOM,
-                                      );
-                                    }
-                                    else{
-                                      Fluttertoast.showToast(
-                                        msg: "Selecione um componente antes de continuar.",
-                                        toastLength: Toast.LENGTH_LONG,
-                                        gravity: ToastGravity.BOTTOM,
-                                      );
-                                    }
-                                  });
-                                },
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    )
-                ),*/
                 RaisedButton(
                   elevation: 4,
                   shape: RoundedRectangleBorder(

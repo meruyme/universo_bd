@@ -102,10 +102,11 @@ class _cadastrar_gigante_vermelhaState extends State<cadastrar_gigante_vermelha>
                       child:Container(
                         height: 55,
                         child:  custom_text_field(
-                          label: "Tamanho (km)",
+                          label: "Tamanho",
                           controller: _controllerTamanho,
                           textInputType: TextInputType.number,
                           isPassword: false,
+                          suffix: "km",
                         ),
                       )
                   ),
@@ -117,10 +118,11 @@ class _cadastrar_gigante_vermelhaState extends State<cadastrar_gigante_vermelha>
                       child:Container(
                         height: 55,
                         child: custom_text_field(
-                          label: "Distância da Terra (anos-luz)",
+                          label: "Distância da Terra",
                           controller: _controllerDistancia,
                           textInputType: TextInputType.number,
                           isPassword: false,
+                          suffix: "anos-luz",
                         ),
                       )
                   ),
@@ -131,10 +133,11 @@ class _cadastrar_gigante_vermelhaState extends State<cadastrar_gigante_vermelha>
                       child:Container(
                         height: 55,
                         child: custom_text_field(
-                          label: "Idade (bilhões de anos)",
+                          label: "Idade",
                           controller: _controllerIdade,
                           textInputType: TextInputType.number,
                           isPassword: false,
+                          suffix: "bilhões de anos",
                         ),
                       )
                   ),

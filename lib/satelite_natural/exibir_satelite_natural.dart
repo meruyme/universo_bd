@@ -176,7 +176,7 @@ class _exibir_satelite_naturalState extends State<exibir_satelite_natural> {
                   stream: db.collection("orbitantes").where("idSatelite", isEqualTo: widget.arguments.sateliteNatural.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;
@@ -250,7 +250,7 @@ class _exibir_satelite_naturalState extends State<exibir_satelite_natural> {
                   stream: db.collection("orbitantes").where("idSatelite", isEqualTo: widget.arguments.sateliteNatural.id).snapshots(),
                   builder: (context, snapshot){
                     if(!snapshot.hasData){
-                      return Text("Loading...");
+                      return Text("");
                     }
                     else{
                       final relacoesDB = snapshot.data.documents;

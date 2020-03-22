@@ -142,10 +142,11 @@ class _editar_planetaState extends State<editar_planeta> {
                       child:Container(
                         height: 55,
                         child:  custom_text_field(
-                          label: "Tamanho (km)",
+                          label: "Tamanho",
                           controller: _controllerTamanho,
                           textInputType: TextInputType.number,
                           isPassword: false,
+                          suffix: "anos-luz",
                         ),
                       )
                   ),
@@ -157,10 +158,11 @@ class _editar_planetaState extends State<editar_planeta> {
                       child:Container(
                         height: 55,
                         child: custom_text_field(
-                          label: "Massa (kg)",
+                          label: "Massa",
                           controller: _controllerMassa,
                           textInputType: TextInputType.number,
                           isPassword: false,
+                          suffix: "kg",
                         ),
                       )
                   ),
@@ -168,10 +170,11 @@ class _editar_planetaState extends State<editar_planeta> {
                 Padding(
                   padding: EdgeInsetsDirectional.only(bottom: 24),
                   child: custom_text_field(
-                    label: "Velocidade de rotação (km/h)",
+                    label: "Velocidade de rotação",
                     controller: _controllerVelocidade,
                     textInputType: TextInputType.number,
                     isPassword: false,
+                    suffix: "km/h",
                   ),
                 ),
                 Padding(
