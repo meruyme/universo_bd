@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:universo_bd/cadastrar_usuario.dart';
 import 'package:universo_bd/estrela/cadastrar_gigante_vermelha.dart';
 import 'package:universo_bd/estrela/editar_estrela.dart';
 import 'package:universo_bd/estrela/editar_gigante_vermelha.dart';
@@ -44,6 +45,7 @@ void main(){
         initialRoute: "/",
         routes: {
           "/login" : (context) => login(),
+          "/cadastrar_usuario" : (context) => cadastrar_usuario(),
           "/cadastrar_planeta" : (context) => cadastrar_planeta(),
           "/editar_planeta" : (context) => editar_planeta(planeta: ModalRoute.of(context).settings.arguments),
           "/listar_planeta" : (context) => listar_planeta(),

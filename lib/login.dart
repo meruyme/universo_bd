@@ -4,8 +4,6 @@ import 'package:universo_bd/classes/Usuario.dart';
 import 'package:universo_bd/widgets/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'cadastrar_usuario.dart';
-
 
 class login extends StatefulWidget {
 
@@ -123,11 +121,7 @@ class _loginState extends State<login> {
                     padding: EdgeInsetsDirectional.only(top: 10),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(context,
-                            MaterialPageRoute(
-                                builder: (context) => cadastrar_usuario()
-                            )
-                        );
+                        Navigator.pushNamed(context, "/cadastrar_usuario");
                       },
                       child: Text(
                         "Não possui conta? Cadastre-se!",
