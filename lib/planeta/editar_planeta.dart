@@ -25,7 +25,6 @@ class _editar_planetaState extends State<editar_planeta> {
   TextEditingController _controllerVelocidade;
   TextEditingController _nomeComponenteController = TextEditingController();
   TextEditingController _porcentagemComponenteController = TextEditingController();
-  //essa variavel vai receber o valor inicial que vem na _varNomeAntigo só; ta recebendo na init
   String _titulo="";
   bool isExpanded = false;
   int selectedIndex = -1;
@@ -146,7 +145,7 @@ class _editar_planetaState extends State<editar_planeta> {
                           controller: _controllerTamanho,
                           textInputType: TextInputType.number,
                           isPassword: false,
-                          suffix: "anos-luz",
+                          suffix: "km",
                         ),
                       )
                   ),
